@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DomainEntity.Models.Konu>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Konu Ekle", "KonuEkle")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UstKonu.KonuBaslik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KonuBaslik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KonuIcerik)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UstKonu.KonuBaslik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KonuBaslik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KonuIcerik)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Duzenle", new { id=item.KonuID }) |
+            @Html.ActionLink("Detay", "Detay", new { id=item.KonuID }) |
+            <a onclick="sil(this)" data-id="@item.KonuID">Sil</a>
+        </td>
+    </tr>
+}
+
+</table>
+<script>
+
+    function sil(hangiButon) {
+
+        var id = $(hangiButon).attr("data-id");
+        console.log(id);
+        $.ajax({
+            url: "/Konu/KonuSil",
+            method: "POST",
+            data: { "id": id },
+            success: function () {
+                $(hangiButon).parent().parent().slideUp();
+            }
+        })
+    }
+
+
+</script>

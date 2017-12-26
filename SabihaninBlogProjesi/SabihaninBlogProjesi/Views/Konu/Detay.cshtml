@@ -1,0 +1,43 @@
+﻿@model DomainEntity.Models.Konu
+
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detay</h2>
+
+<div>
+    <h4>Konu</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UstKonu.KonuBaslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UstKonu.KonuBaslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KonuBaslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KonuBaslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KonuIcerik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KonuIcerik)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "Duzenle", new { id = Model.KonuID }) |
+    @Html.ActionLink("Listeye Geri Dön", "Index")
+</p>

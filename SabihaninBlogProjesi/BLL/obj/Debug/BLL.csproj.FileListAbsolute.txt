@@ -1,0 +1,36 @@
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\BLL.dll.config
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\BLL.dll
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\BLL.pdb
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\DAL.dll
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\DomainEntity.dll
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\EntityFramework.dll
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\DAL.pdb
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\DomainEntity.pdb
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\EntityFramework.xml
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\obj\Debug\BLL.dll
+C:\Users\nuuklu\Documents\Visual Studio 2015\Projects\SabihaninBlogProjesi\BLL\obj\Debug\BLL.pdb
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\BLL.dll.config
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\BLL.dll
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\BLL.pdb
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\DAL.dll
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\DomainEntity.dll
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\EntityFramework.dll
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\DAL.pdb
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\DomainEntity.pdb
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\EntityFramework.xml
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\obj\Debug\BLL.dll
+C:\Users\Sabiha Çetin\Desktop\SabihaninBlogProjesi\BLL\obj\Debug\BLL.pdb

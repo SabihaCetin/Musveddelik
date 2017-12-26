@@ -1,0 +1,58 @@
+﻿@model DomainEntity.Makale
+
+@{
+    ViewBag.Title = "MakaleDetay";
+}
+
+<h2>MakaleDetay</h2>
+
+<div>
+    <h4>Makale</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Baslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Baslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tanım)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tanım)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Icerik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Icerik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EklemeTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EklemeTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YazarID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YazarID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "MakaleDuzenle","Makale", new { id = Model.MakaleID },null) |
+    @Html.ActionLink("Listeye geri dön", "Index",null,null)
+</p>

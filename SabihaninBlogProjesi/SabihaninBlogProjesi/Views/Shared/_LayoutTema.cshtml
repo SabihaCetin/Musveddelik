@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        Fashion is our passion | Free responsive Fashion Blog template
+    </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta name="description" content="Download free amazing responsive Fashion Blog template." />
+    <meta name="keywords" content="free, responsive, blog, fashion, web site, template" />
+ 
+    <!-- CUSTOM STYLE -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body class="size-1140">
+    <!-- TOP NAV WITH LOGO -->
+    <header class="margin-bottom">
+        <div class="line">
+            <nav>s
+                <div class="top-nav">
+                    <p class="nav-text"></p>
+                    <a class="logo" href="index.html">
+                        Fashion<span>Blog</span>
+                    </a>
+                    <h1>free fashion blog template</h1>
+                    <ul class="top-ul right">
+                        <li>
+                            <a href="index.html">Blog</a>
+                        </li>
+                        <li>
+                            <a href="about.html">About</a>
+                        </li>
+                        <li>
+                            <a href="archive.html">Archive</a>
+                        </li>
+                        <li>
+                            <a href="contact.html">Contact</a>
+                        </li>
+                        <div class="social right">
+                            <a target="_blank" href="https://www.facebook.com/sbhctn">
+                                <i class="icon-facebook_circle icon2x"></i>
+                            </a>
+                            <a target="_blank" href="https://twitter.com/sbhctn">
+                                <i class="icon-twitter_circle icon2x"></i>
+                            </a>
+                        </div>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- MAIN-->
+    @RenderBody()
+    <!-- FOOTER -->
+    <div class="line">
+        <footer>
+            <div class="s-12 l-8">
+                <p>
+                    Copyright 2015, Vision Design - graphic zoo<br>
+                    All images is purchased from Bigstock. Do not use the image in your website.
+                </p>
+            </div>
+            <div class="s-12 l-4">
+                <a class="right" href="http://www.myresponsee.com" title="Responsive framework">
+                    Design and coding<br>
+                    by Responsee Team
+                </a>
+            </div>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
