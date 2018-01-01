@@ -17,9 +17,9 @@ namespace DomainEntity.Models
         [MaxLength(100, ErrorMessage = ("En fazla 100 karakter yazılabilir."))]
         [DisplayName("Konu Baslik")]
         public string KonuBaslik { get; set; }
-        [Required]
-        [DisplayName("Konu İçerik")]
         public string KonuIcerik { get; set; }
+        [DisplayName("Konu Resmi")]
+        public string KonuResim { get; set; }
         [ForeignKey("UstKonu")]
         public int? UstKonuID { get; set; }
         public virtual List<Konu> AltKonular { get; set; }

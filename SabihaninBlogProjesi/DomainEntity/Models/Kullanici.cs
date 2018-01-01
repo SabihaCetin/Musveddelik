@@ -13,6 +13,7 @@ namespace DomainEntity.Models
     [Table("TblKullanici")]
     public class Kullanici:IdentityUser
     {
+        public int Kullanici_Id { get; set; }
         [Required]
         [DisplayName("İsim Soyisim")]
         public string AdSoyad { get; set; }

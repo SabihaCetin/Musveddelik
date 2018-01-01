@@ -67,7 +67,7 @@ namespace SabihaninBlogProjesi.Controllers
                 brep.Delete(id);
                 return Json(new { success = true, message = "Silindi" });
             }
-            catch (Exception e)
+            catch 
             {
                 
                 return Json(new { success = false, message = "Bir hata oluştu." });

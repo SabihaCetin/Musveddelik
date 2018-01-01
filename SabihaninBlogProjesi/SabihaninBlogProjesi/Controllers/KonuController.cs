@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using DomainEntity.Models;
 using SabihaninBlogProjesi.Models;
 using DAL;
+using System.IO;
 
 namespace SabihaninBlogProjesi.Controllers
 {
@@ -54,21 +55,47 @@ namespace SabihaninBlogProjesi.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult KonuEkle([Bind(Include = "KonuID,KonuBaslik,KonuIcerik,UstKonuID")] Konu konu)
+        public ActionResult KonuEkle([Bind(Include = "KonuID,KonuBaslik,KonuIcerik,UstKonuID")] Konu konu, HttpPostedFileBase resim)
         {
-            if (ModelState.IsValid)
-            {
-                //db.Konus.Add(konu);
-                //db.SaveChanges();
-                mc.Konular.Add(konu);
-                mc.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            //if (ModelState.IsValid)
+            //{
+            //    //db.Konus.Add(konu);
+            //    //db.SaveChanges();
+            //    mc.Konular.Add(konu);
+            //    mc.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
 
             // ViewBag.UstKonuID = new SelectList(db.Konus, "KonuID", "KonuBaslik", konu.UstKonuID);
             ViewBag.UstKonuID = new SelectList(mc.Konular, "KonuID", "KonuBaslik", konu.UstKonuID);
-            return View(konu);
+            var klasor = Server.MapPath("/Content/Upload/");
+            //resim geldiyse kaydet
+            if (resim != null && resim.ContentLength != 0)
+            {
+                if (resim.ContentLength > 2 * 1024 * 1024)
+                {
+                    ModelState.AddModelError(null, "Resim boyutu max 2MB olabilir");
+                }
+                else
+                {
+                    try
+                    {
+                        FileInfo fi = new FileInfo(resim.FileName);
+                        var rasgele = Guid.NewGuid().ToString().Substring(0, 5);
+                        var dosyaAdi = fi.Name + rasgele + fi.Extension;
+                        resim.SaveAs(klasor + dosyaAdi);
+                        konu.KonuResim = dosyaAdi;
+                    }
+                    catch { }
+                }
+                if (ModelState.IsValid)
+                    new BLL.BaseRepository<Konu>().Insert(konu);
+            }
+           BLL.BaseRepository<Konu> br = new BLL.BaseRepository<Konu>();
+
+            return RedirectToAction("Index");
         }
 
         // GET: Konu/Edit/5
