@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DomainEntity.Models.Kategori>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Adi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aciklama)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aciklama)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.KAtegoriID }) |
+                @Html.ActionLink("Details", "Details", new { id=item.KAtegoriID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.KAtegoriID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

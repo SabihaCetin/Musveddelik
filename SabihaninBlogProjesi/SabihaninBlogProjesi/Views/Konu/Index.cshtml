@@ -1,22 +1,12 @@
 ﻿@model IEnumerable<DomainEntity.Models.Konu>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Index</h2>
-
 <p>
-    @Html.ActionLink("Konu Ekle", "KonuEkle")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.UstKonu.KonuBaslik)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.KonuBaslik)
+            @Html.DisplayNameFor(model => model.KonuAdi)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.KonuResim)
@@ -24,25 +14,22 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UstKonu.KonuBaslik)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KonuBaslik)
-            <div><img src="@item.KonuResim"</div>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.KonuResim)
-        </td>
-        <td>
-            @Html.ActionLink("Düzenle", "Duzenle", new { id=item.KonuID }) |
-            @Html.ActionLink("Detay", "Detay", new { id=item.KonuID }) |
-            <a onclick="sil(this)" data-id="@item.KonuID">Sil</a>
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KonuAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KonuResim)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.KonuID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.KonuID }) |
+                <a onclick="sil(this)" data-id="@item.KonuID">Sil</a>
+            </td>
+        </tr>
+    }
 
 </table>
 <script>

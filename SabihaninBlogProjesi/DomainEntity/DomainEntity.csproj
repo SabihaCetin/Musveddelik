@@ -61,12 +61,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Konu.cs" />
+    <Compile Include="Models\Etiket.cs" />
+    <Compile Include="Models\Kategori.cs" />
     <Compile Include="Models\Kullanici.cs" />
     <Compile Include="Models\Makale.cs" />
-    <Compile Include="Models\OrtakKullaniciMakale.cs" />
-    <Compile Include="Models\TavsiyePartialModeli.cs" />
+    <Compile Include="Models\Ortak.cs" />
+    <Compile Include="Models\Resim.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\Yorum.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

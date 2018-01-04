@@ -18,28 +18,35 @@
         <a href="#"><i class="fa fa-tumblr"></i></a>
     </div>
 
-    <div class="row">
-        @foreach (var item in Model)
+    @*<div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <img src="http://25.media.tumblr.com/tumblr_m411ji0JVd1qib5bvo1_500.jpg" />
+                    <p>@item.Baslik</p>
+                </div>
+
+            }
+        </div>*@
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        if (i % 2 == 0)
         {
-            <div class="col-md-4">
-                <img src="http://25.media.tumblr.com/tumblr_m411ji0JVd1qib5bvo1_500.jpg" />
-                <p>@item.Baslik</p>
-            </div>
-
+            @Html.Raw("<div class='tripple'>")
         }
-    </div>
 
-    @*<div class="tripple">
         <div class="boximg ">
             <img src="http://25.media.tumblr.com/tumblr_m411ji0JVd1qib5bvo1_500.jpg" />
-            <p>Lorem ipsum dolor sit amet</p>
+            <p>@item.Baslik</p>
         </div>
-        <div class="boximg">
-            <img src="https://templated.co/items/demos/visualize/images/thumbs/05.jpg" />
-            <p>Lorem ipsum dolor sit amet</p>
-        </div>
-    </div>
 
+        if (i % 2 == 1)
+        {
+            @Html.Raw("</div>")
+        }
+        i++;
+            }
 
     <div class="tripple">
         <div class="boximg">
@@ -65,7 +72,7 @@
             <img src="https://templated.co/items/demos/visualize/images/thumbs/02.jpg" />
             <p>Lorem ipsum dolor sit amet</p>
         </div>
-    </div>*@
+    </div>
     <hr />
     <p class="footer" align="center">© Untitled. All rights reserved. Design: SIIT. Demo Images: Google.</p>
 </body>

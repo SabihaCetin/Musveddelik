@@ -11,112 +11,107 @@ using SabihaninBlogProjesi.Models;
 
 namespace SabihaninBlogProjesi.Controllers
 {
-    public class MakaleController : Controller
+    public class KategoriController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Makale
+        // GET: Kategori
         public ActionResult Index()
         {
-            var makales = db.Makales.Include(m => m.Kategori);
-            return View(makales.ToList());
+            return View(db.Kategoris.ToList());
         }
 
-        // GET: Makale/Details/5
+        // GET: Kategori/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Makale makale = db.Makales.Find(id);
-            if (makale == null)
+            Kategori kategori = db.Kategoris.Find(id);
+            if (kategori == null)
             {
                 return HttpNotFound();
             }
-            return View(makale);
+            return View(kategori);
         }
 
-        // GET: Makale/Create
+        // GET: Kategori/Create
         public ActionResult Create()
         {
-            ViewBag.KategoriID = new SelectList(db.Kategoris, "KAtegoriID", "Adi");
             return View();
         }
 
-        // POST: Makale/Create
+        // POST: Kategori/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale)
+        public ActionResult Create([Bind(Include = "KAtegoriID,Adi,Aciklama")] Kategori kategori)
         {
             if (ModelState.IsValid)
             {
-                db.Makales.Add(makale);
+                db.Kategoris.Add(kategori);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.KategoriID = new SelectList(db.Kategoris, "KAtegoriID", "Adi", makale.KategoriID);
-            return View(makale);
+            return View(kategori);
         }
 
-        // GET: Makale/Edit/5
+        // GET: Kategori/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Makale makale = db.Makales.Find(id);
-            if (makale == null)
+            Kategori kategori = db.Kategoris.Find(id);
+            if (kategori == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.KategoriID = new SelectList(db.Kategoris, "KAtegoriID", "Adi", makale.KategoriID);
-            return View(makale);
+            return View(kategori);
         }
 
-        // POST: Makale/Edit/5
+        // POST: Kategori/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale)
+        public ActionResult Edit([Bind(Include = "KAtegoriID,Adi,Aciklama")] Kategori kategori)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(makale).State = EntityState.Modified;
+                db.Entry(kategori).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.KategoriID = new SelectList(db.Kategoris, "KAtegoriID", "Adi", makale.KategoriID);
-            return View(makale);
+            return View(kategori);
         }
 
-        // GET: Makale/Delete/5
+        // GET: Kategori/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Makale makale = db.Makales.Find(id);
-            if (makale == null)
+            Kategori kategori = db.Kategoris.Find(id);
+            if (kategori == null)
             {
                 return HttpNotFound();
             }
-            return View(makale);
+            return View(kategori);
         }
 
-        // POST: Makale/Delete/5
+        // POST: Kategori/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Makale makale = db.Makales.Find(id);
-            db.Makales.Remove(makale);
+            Kategori kategori = db.Kategoris.Find(id);
+            db.Kategoris.Remove(kategori);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

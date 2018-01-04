@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace DomainEntity.Models
 {
-  public  class TavsiyePartialModeli 
+    public class Ortak
     {
-        public int TavsiyePartialModeliID { get; set; }
         public Kullanici k { get; set; }
         public Makale m { get; set; }
-        public Konu kon { get; set;}
 
     }
 }

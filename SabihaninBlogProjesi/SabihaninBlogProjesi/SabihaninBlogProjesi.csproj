@@ -200,7 +200,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KonuController.cs" />
+    <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\MakaleController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1304,13 +1304,16 @@
     <Content Include="Content\CustomProfilSite.css" />
     <Content Include="Content\responsee.css" />
     <Content Include="Content\template-style.css" />
+    <Content Include="Content\Upload\IMG_0620.JPGc8377.JPG" />
     <Content Include="Content\Upload\IMG_1237.JPG777c3.JPG" />
     <Content Include="Content\Upload\IMG_1237.JPGa0349.JPG" />
     <Content Include="Content\Upload\IMG_1237.JPGeddb4.JPG" />
+    <Content Include="Content\Upload\IMG_1237.JPGfbad4.JPG" />
     <Content Include="Content\Upload\IMG_1609.JPG09548.JPG" />
     <Content Include="Content\Upload\IMG_1609.JPG23751.JPG" />
     <Content Include="Content\Upload\IMG_1609.JPG3fff4.JPG" />
     <Content Include="Content\Upload\IMG_1609.JPG546e3.JPG" />
+    <Content Include="Content\Upload\IMG_1609.JPG9563e.JPG" />
     <Content Include="Content\Upload\IMG_1609.JPGb6201.JPG" />
     <Content Include="Content\Upload\IMG_9320.JPG3e1fa.JPG" />
     <Content Include="fonts\mfglabsiconset-webfont.svg" />
@@ -1420,9 +1423,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Makale\MakaleEkle.cshtml" />
-    <Content Include="Views\Makale\MakaleDetay.cshtml" />
-    <Content Include="Views\Makale\MakaleDuzenle.cshtml" />
     <Content Include="Views\Account\Register1.cshtml" />
     <Content Include="Views\Blog\Profil.cshtml" />
     <Content Include="Views\Konu\KonuEkle.cshtml" />
@@ -1431,11 +1431,20 @@
     <Content Include="Views\Konu\Index.cshtml" />
     <Content Include="Views\Konu\Detay.cshtml" />
     <Content Include="Views\Konu\Duzenle.cshtml" />
-    <Content Include="Views\Makale\Index.cshtml" />
     <Content Include="Views\Shared\TavsiyeEdilenBloglar.cshtml" />
     <Content Include="Views\_LayoutPartialTavsiye.cshtml" />
     <Content Include="Views\deneme.cshtml" />
     <Content Include="Views\Shared\_LayoutTema.cshtml" />
+    <Content Include="Views\Kategori\Create.cshtml" />
+    <Content Include="Views\Kategori\Delete.cshtml" />
+    <Content Include="Views\Kategori\Details.cshtml" />
+    <Content Include="Views\Kategori\Edit.cshtml" />
+    <Content Include="Views\Kategori\Index.cshtml" />
+    <Content Include="Views\Makale\Create.cshtml" />
+    <Content Include="Views\Makale\Delete.cshtml" />
+    <Content Include="Views\Makale\Details.cshtml" />
+    <Content Include="Views\Makale\Edit.cshtml" />
+    <Content Include="Views\Makale\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

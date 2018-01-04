@@ -10,19 +10,21 @@ using System.Threading.Tasks;
 
 namespace DomainEntity.Models
 {
-    [Table("TblKullanici")]
-    public class Kullanici:IdentityUser
+    public partial class Kullanici : IdentityUser
     {
-        public int Kullanici_Id { get; set; }
-        [Required]
-        [DisplayName("İsim Soyisim")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Kullanici()
+        {
+            KayitTarihi = DateTime.Now;
+         
+        }
+
         public string AdSoyad { get; set; }
         public string Meslek { get; set; }
-        public string WebSitesi { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayName("Doğum Tarihi")]
+        public bool Cinsiyet { get; set; }
         public DateTime? DogumTarihi { get; set; }
+        public DateTime KayitTarihi { get; set; }
         public string Resim { get; set; }
-
+        
     }
 }

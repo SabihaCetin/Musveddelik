@@ -57,6 +57,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201801041059305_kurulum.cs" />
+    <Compile Include="Migrations\201801041059305_kurulum.Designer.cs">
+      <DependentUpon>201801041059305_kurulum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MyContext.cs" />
@@ -70,6 +74,11 @@
       <Project>{0065F6A1-9FC2-4C8B-BBCB-93050BFDCA22}</Project>
       <Name>DomainEntity</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801041059305_kurulum.resx">
+      <DependentUpon>201801041059305_kurulum.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

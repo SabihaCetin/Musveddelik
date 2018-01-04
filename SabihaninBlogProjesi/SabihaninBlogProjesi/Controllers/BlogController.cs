@@ -2,6 +2,7 @@
 using DAL;
 using DomainEntity;
 using DomainEntity.Models;
+using SabihaninBlogProjesi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,30 +13,21 @@ namespace SabihaninBlogProjesi.Controllers
 {
     public class BlogController : Controller
     {
-        BaseRepository<OrtakKullaniciMakale> brep = new BaseRepository<OrtakKullaniciMakale>();
-        MyContext db = new MyContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
+
+        BaseRepository<Ortak> brep = new BaseRepository<Ortak>();
+       
         // GET: Blog
         public ActionResult Index()
         {
             return View();
         }
         [HttpGet]
-        public ActionResult Profil(string email)
+        public ActionResult Profil()
         {
-        //    if (User.Identity.IsAuthenticated)
-        //    {
-        //        //  var kullanici = db.Users.Where(x => x.Email == email).FirstOrDefault();
-        //        List<Makale> kullanicininMakaleleri = db.Makaleler.Where(x => x.YazarEmail == email).ToList();
-        //        return View(kullanicininMakaleleri);
-        //    }
-        //    else
-        //    {
-        //        return RedirectToAction("Index");
-        //    }
-   
-            List<Makale> kullanicininMakaleleri = db.Makaleler.Where(x => x.YazarEmail == email).ToList();
-            
-            return View(kullanicininMakaleleri);
+           
+            var makales = db.Makales;
+            return View(makales.ToList());
     }
     }
 }

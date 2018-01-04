@@ -8,61 +8,35 @@ using System.Threading.Tasks;
 
 namespace DomainEntity.Models
 {
-  public  class Makale 
+
+    public partial class Makale
     {
-
-        [Key]
-        public int MakaleID { get; set; }
-
-        [Required(ErrorMessage = "Başlık Zorunludur.")]
-        [MaxLength(500)]
-        [StringLength(500, ErrorMessage = "Title should be 3-500 caracters long.", MinimumLength = 3)]
-        public string Baslik { get; set; }
-        [Required(ErrorMessage = "Description is required.")]
-        [MaxLength(2000)]
-        [StringLength(2000, ErrorMessage = "Description should be 3-2000 caracters long.", MinimumLength = 3)]
-        public string Tanım { get; set; }
-        [Column(TypeName = "text")]
-        public string Icerik { get; set; }
-        public string MakaleResim { get; set; }
-        public string MakaleVideo { get; set; }
-        public string MakaleMuzik { get; set; }
-        public DateTime EklemeTarihi { get; set; }
-        public string EklenmeGunu
-        {
-            get
-            {
-                TimeSpan gunfarki = DateTime.Today - EklemeTarihi;
-                double year = (gunfarki.TotalDays / 365);
-                if (gunfarki.Days >= 31)
-                {
-                    return gunfarki + " days ago";
-                }
-                else if (gunfarki.Hours >= 0)
-                {
-                    return gunfarki + " hours ago";
-                }
-                else if (((int)gunfarki.TotalDays / 365) == 1)
-                {
-                    return " 1 year ago";
-                }
-                else if (year >= 1)
-                {
-                    return year + " year ago";
-                }
-                return "";
-            }
-        }
-        
-        public virtual string YazarEmail { get; set; }
-        //[ForeignKey("YazarEmail")]
-        //public string  YazarEmail { get; set; }
-        //public virtual Kullanici Kullanici { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Makale()
-        { Kullanici k = new Kullanici();
-            EklemeTarihi = DateTime.Today;
-            YazarEmail = k.Email;
+        {
+            EklenmeTarihi = DateTime.Today;
+            this.Resim = new HashSet<Resim>();
+            this.Yorum = new HashSet<Yorum>();
+            this.Etiket = new HashSet<Etiket>();
         }
+        public int MakaleID { get; set; }
+        public string Baslik { get; set; }
+        public string Icerik { get; set; }
+        public System.DateTime EklenmeTarihi { get; set; }
+        public int? KategoriID { get; set; }
+        public Nullable<int> GoruntulenmeSayisi { get; set; }
+        public Nullable<int> Begeni { get; set; }
+        public Nullable<int> KullaniciID { get; set; }
+
+        public virtual Kategori Kategori { get; set; }
+        public virtual Kullanici Kullanici { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Resim> Resim { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Yorum> Yorum { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Etiket> Etiket { get; set; }
 
     }
 }

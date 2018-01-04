@@ -1,0 +1,75 @@
+﻿@model DomainEntity.Models.Makale
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Makale</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategori.Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategori.Adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Baslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Baslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Icerik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Icerik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EklenmeTarihi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EklenmeTarihi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GoruntulenmeSayisi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoruntulenmeSayisi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Begeni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Begeni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KullaniciID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KullaniciID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MakaleID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

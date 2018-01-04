@@ -12,7 +12,7 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
             AutomaticMigrationDataLossAllowed = true;
         }
 
@@ -33,8 +33,9 @@
             if (context.Roles.Count() == 0)
             {
                 context.Roles.Add(new IdentityRole() { Name = "Admin" });
-
+                 context.Roles.Add(new IdentityRole() { Name = "Kullanici" });
             }
+          
             if (context.Users.Count() == 0)
             {
              

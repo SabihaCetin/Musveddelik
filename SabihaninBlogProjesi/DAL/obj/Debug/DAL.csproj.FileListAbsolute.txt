@@ -46,3 +46,5 @@ C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL
 C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.dll
 C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.pdb
+C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.Migrations.kurulum.resources
+C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.csproj.GenerateResource.Cache

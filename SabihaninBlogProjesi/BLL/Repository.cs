@@ -1,4 +1,5 @@
-﻿using DomainEntity.Models;
+﻿using DomainEntity;
+using DomainEntity.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace BLL
     
     public class MakaleRep : BaseRepository<Makale> { }
 
-    public class KonuRep : BaseRepository<Konu> { }
+    public class KategoriRep : BaseRepository<Kategori> { }
 
-  //  public class YorumRep : BaseRepository<Yorum> { }
+    public class YorumRep : BaseRepository<Yorum> { }
 }

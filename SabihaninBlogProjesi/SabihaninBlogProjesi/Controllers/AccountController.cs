@@ -157,10 +157,10 @@ namespace SabihaninBlogProjesi.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserStore<Kullanici> str = new UserStore<Kullanici>();
+                UserStore<Kullanici> str = new UserStore<Kullanici>(new MyContext());
                 UserManager<Kullanici> mng = new UserManager<Kullanici>(str);
                 UserManager<Kullanici, string> mng2 = new UserManager<Kullanici, string>(str);
-                Kullanici user = new Kullanici { UserName = model.Email, Email = model.Email, AdSoyad = model.AdSoyad, DogumTarihi = model.DogumTarihi, Meslek = model.Meslek, Resim = model.Resim, WebSitesi = model.WebSitesi };
+                Kullanici user = new Kullanici { UserName = model.Email, Email = model.Email, AdSoyad = model.AdSoyad, DogumTarihi = model.DogumTarihi, Meslek = model.Meslek, Resim = model.Resim };
 
                 //   var user = new Kullanici { UserName = model.Email, Email = model.Email, AdSoyad = model.AdSoyad, DogumTarihi = model.DogumTarihi, Meslek = model.Meslek, Resim = model.Resim, WebSitesi=model.WebSitesi, };
                   var result = await mng.CreateAsync(user, model.Password);
