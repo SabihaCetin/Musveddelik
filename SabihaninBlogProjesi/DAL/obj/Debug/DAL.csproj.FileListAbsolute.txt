@@ -48,3 +48,21 @@ C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL
 C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.pdb
 C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.Migrations.kurulum.resources
 C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.csproj.GenerateResource.Cache
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.Migrations.kurulum.resources
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.csproj.GenerateResource.Cache
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\bin\Debug\DAL.dll.config
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\bin\Debug\DAL.dll
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\bin\Debug\DAL.pdb
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\bin\Debug\DomainEntity.dll
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\bin\Debug\EntityFramework.dll
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\bin\Debug\DomainEntity.pdb
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\bin\Debug\EntityFramework.xml
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.dll
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.pdb

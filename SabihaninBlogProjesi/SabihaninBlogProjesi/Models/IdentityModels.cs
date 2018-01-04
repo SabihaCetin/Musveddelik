@@ -31,16 +31,21 @@ namespace SabihaninBlogProjesi.Models
             return new ApplicationDbContext();
         }
 
+        public System.Data.Entity.DbSet<DomainEntity.Models.Makale> Makales { get; set; }
+
+        public System.Data.Entity.DbSet<DomainEntity.Models.Kategori> Kategoris { get; set; }
+
         //public System.Data.Entity.DbSet<DomainEntity.Models.Kategori> Kategoris { get; set; }
 
         //public System.Data.Entity.DbSet<DomainEntity.Models.Makale> Makales { get; set; }
 
-        //public System.Data.Entity.DbSet<Makale> Makales { get; set; }
 
-        //public System.Data.Entity.DbSet<Kullanici> Kullanicis { get; set; }
+        //  public System.Data.Entity.DbSet<Makale> Makales { get; set; }
 
-        //public System.Data.Entity.DbSet<Konu> Konus { get; set; }
+        //  public System.Data.Entity.DbSet<Kullanici> Kullanicis { get; set; }
 
-        //public System.Data.Entity.DbSet<TavsiyePartialModeli> TavsiyePartialModelis { get; set; }
+        // public System.Data.Entity.DbSet<Konu> Konus { get; set; }
+
+
     }
 }

@@ -10,6 +10,6 @@ namespace DomainEntity.Models
     {
         public Kullanici k { get; set; }
         public Makale m { get; set; }
-
+        public Resim r { get; set; }
     }
 }

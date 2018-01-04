@@ -8,17 +8,20 @@ using System.Web;
 using System.Web.Mvc;
 using DomainEntity.Models;
 using SabihaninBlogProjesi.Models;
+using DAL;
+using System.IO;
 
 namespace SabihaninBlogProjesi.Controllers
 {
     public class MakaleController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        //  private ApplicationDbContext db = new ApplicationDbContext();
+        MyContext db = new MyContext();
         // GET: Makale
         public ActionResult Index()
         {
-            var makales = db.Makales.Include(m => m.Kategori);
+            var makales = db.Makaleler.Include(m => m.Kategori);
+
             return View(makales.ToList());
         }
 
@@ -29,7 +32,7 @@ namespace SabihaninBlogProjesi.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Makale makale = db.Makales.Find(id);
+            Makale makale = db.Makaleler.Find(id);
             if (makale == null)
             {
                 return HttpNotFound();
@@ -40,7 +43,7 @@ namespace SabihaninBlogProjesi.Controllers
         // GET: Makale/Create
         public ActionResult Create()
         {
-            ViewBag.KategoriID = new SelectList(db.Kategoris, "KAtegoriID", "Adi");
+            ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi");
             return View();
         }
 
@@ -49,17 +52,45 @@ namespace SabihaninBlogProjesi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale)
+        public ActionResult Create([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale, Resim r, HttpPostedFileBase resim)
         {
+            
             if (ModelState.IsValid)
             {
-                db.Makales.Add(makale);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                #region resimekleme
+                var klasor = Server.MapPath("/content/Upload/");
+                //resim geldiyse kaydet
+                if (resim != null && resim.ContentLength != 0)
+                {
+                    if (resim.ContentLength > 2 * 1024 * 1024)
+                    {
+                        ModelState.AddModelError(null, "Resim boyutu max 2MB olabilir");
+                    }
+                    else
+                    {
+                        try
+                        {
+                            FileInfo fi = new FileInfo(resim.FileName);
+                            var rasgele = Guid.NewGuid().ToString().Substring(0, 5);
+                            var dosyaAdi = fi.Name + rasgele + fi.Extension;
+                            resim.SaveAs(klasor + dosyaAdi);
+                            r.OrtaBoyut = dosyaAdi;
+                            makale.Resim.Add(r);
+                        }
+                        catch { }
+                    }
+                    if (ModelState.IsValid)
+                        new BLL.BaseRepository<Resim>().Insert(r);
+                    #endregion
+                    db.Resimler.Add(r);
+                    db.Makaleler.Add(makale);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.KategoriID = new SelectList(db.Kategoris, "KAtegoriID", "Adi", makale.KategoriID);
-            return View(makale);
+               
+            } ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi", makale.KategoriID);
+                return View(makale);
         }
 
         // GET: Makale/Edit/5
@@ -69,12 +100,12 @@ namespace SabihaninBlogProjesi.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Makale makale = db.Makales.Find(id);
+            Makale makale = db.Makaleler.Find(id);
             if (makale == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.KategoriID = new SelectList(db.Kategoris, "KAtegoriID", "Adi", makale.KategoriID);
+            ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi", makale.KategoriID);
             return View(makale);
         }
 
@@ -91,7 +122,7 @@ namespace SabihaninBlogProjesi.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.KategoriID = new SelectList(db.Kategoris, "KAtegoriID", "Adi", makale.KategoriID);
+            ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi", makale.KategoriID);
             return View(makale);
         }
 
@@ -102,7 +133,7 @@ namespace SabihaninBlogProjesi.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Makale makale = db.Makales.Find(id);
+            Makale makale = db.Makaleler.Find(id);
             if (makale == null)
             {
                 return HttpNotFound();
@@ -115,8 +146,8 @@ namespace SabihaninBlogProjesi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Makale makale = db.Makales.Find(id);
-            db.Makales.Remove(makale);
+            Makale makale = db.Makaleler.Find(id);
+            db.Makaleler.Remove(makale);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

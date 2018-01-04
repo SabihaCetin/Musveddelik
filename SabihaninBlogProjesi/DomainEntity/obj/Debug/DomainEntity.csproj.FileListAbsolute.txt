@@ -42,3 +42,14 @@ C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\Dom
 C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DomainEntity\obj\Debug\DomainEntity.csprojResolveAssemblyReference.cache
 C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DomainEntity\obj\Debug\DomainEntity.dll
 C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DomainEntity\obj\Debug\DomainEntity.pdb
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DomainEntity\obj\Debug\DomainEntity.csprojResolveAssemblyReference.cache
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DomainEntity\bin\Debug\DomainEntity.dll.config
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DomainEntity\bin\Debug\DomainEntity.dll
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DomainEntity\bin\Debug\DomainEntity.pdb
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DomainEntity\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DomainEntity\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DomainEntity\bin\Debug\System.Data.SqlServerCe.dll
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DomainEntity\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DomainEntity\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DomainEntity\obj\Debug\DomainEntity.dll
+C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DomainEntity\obj\Debug\DomainEntity.pdb

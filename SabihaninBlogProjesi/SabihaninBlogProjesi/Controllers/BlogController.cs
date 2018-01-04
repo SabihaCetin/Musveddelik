@@ -13,7 +13,7 @@ namespace SabihaninBlogProjesi.Controllers
 {
     public class BlogController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        MyContext db = new MyContext();
 
         BaseRepository<Ortak> brep = new BaseRepository<Ortak>();
        
@@ -23,10 +23,12 @@ namespace SabihaninBlogProjesi.Controllers
             return View();
         }
         [HttpGet]
+        [Authorize]
+    //    [ValidateAntiForgeryToken]
         public ActionResult Profil()
         {
            
-            var makales = db.Makales;
+            var makales = db.Makaleler;
             return View(makales.ToList());
     }
     }

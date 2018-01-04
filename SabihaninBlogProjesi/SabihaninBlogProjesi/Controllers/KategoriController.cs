@@ -8,17 +8,18 @@ using System.Web;
 using System.Web.Mvc;
 using DomainEntity.Models;
 using SabihaninBlogProjesi.Models;
+using DAL;
 
 namespace SabihaninBlogProjesi.Controllers
 {
     public class KategoriController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private MyContext db = new MyContext();
 
         // GET: Kategori
         public ActionResult Index()
         {
-            return View(db.Kategoris.ToList());
+            return View(db.Kategoriler.ToList());
         }
 
         // GET: Kategori/Details/5
@@ -28,7 +29,7 @@ namespace SabihaninBlogProjesi.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Kategori kategori = db.Kategoris.Find(id);
+            Kategori kategori = db.Kategoriler.Find(id);
             if (kategori == null)
             {
                 return HttpNotFound();
@@ -51,7 +52,7 @@ namespace SabihaninBlogProjesi.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Kategoris.Add(kategori);
+                db.Kategoriler.Add(kategori);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +67,7 @@ namespace SabihaninBlogProjesi.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Kategori kategori = db.Kategoris.Find(id);
+            Kategori kategori = db.Kategoriler.Find(id);
             if (kategori == null)
             {
                 return HttpNotFound();
@@ -97,7 +98,7 @@ namespace SabihaninBlogProjesi.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Kategori kategori = db.Kategoris.Find(id);
+            Kategori kategori = db.Kategoriler.Find(id);
             if (kategori == null)
             {
                 return HttpNotFound();
@@ -110,8 +111,8 @@ namespace SabihaninBlogProjesi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Kategori kategori = db.Kategoris.Find(id);
-            db.Kategoris.Remove(kategori);
+            Kategori kategori = db.Kategoriler.Find(id);
+            db.Kategoriler.Remove(kategori);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
