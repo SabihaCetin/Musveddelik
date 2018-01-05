@@ -195,12 +195,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Areas\Areas\AreasAreaRegistration.cs" />
-    <Compile Include="Areas\Areas\Controllers\AnaController.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\KategoriController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MakaleController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\MakaleController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1351,8 +1352,6 @@
     <Content Include="fonts\mfglabsiconset-webfont.eot" />
     <Content Include="fonts\mfglabsiconset-webfont.ttf" />
     <Content Include="fonts\mfglabsiconset-webfont.woff" />
-    <Content Include="Areas\Areas\Views\web.config" />
-    <Content Include="Areas\Areas\Views\Ana\Index.cshtml" />
     <Content Include="Content\ckeditor_4.8.0_full\ckeditor\CHANGES.md" />
     <Content Include="Content\ckeditor_4.8.0_full\ckeditor\LICENSE.md" />
     <Content Include="Content\ckeditor_4.8.0_full\ckeditor\plugins\scayt\CHANGELOG.md" />
@@ -1377,6 +1376,7 @@
     <Content Include="Content\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\ckfinder\userfiles\.htaccess" />
     <Content Include="Content\ckfinder\web.config" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1432,7 +1432,7 @@
     <Content Include="Views\Konu\Detay.cshtml" />
     <Content Include="Views\Konu\Duzenle.cshtml" />
     <Content Include="Views\Shared\TavsiyeEdilenBloglar.cshtml" />
-    <Content Include="Views\_LayoutPartialTavsiye.cshtml" />
+    <Content Include="Views\Shared\_LayoutPartialTavsiye.cshtml" />
     <Content Include="Views\deneme.cshtml" />
     <Content Include="Views\Shared\_LayoutTema.cshtml" />
     <Content Include="Views\Kategori\Create.cshtml" />
@@ -1445,11 +1445,13 @@
     <Content Include="Views\Makale\Details.cshtml" />
     <Content Include="Views\Makale\Edit.cshtml" />
     <Content Include="Views\Makale\Index.cshtml" />
+    <Content Include="Views\Makale\Ekle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Areas\Models\" />
-    <Folder Include="Areas\Areas\Views\Shared\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="ckeditor_4.8.0_full\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

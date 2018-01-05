@@ -21,7 +21,7 @@ namespace SabihaninBlogProjesi.Controllers
         public ActionResult Index()
         {
             var makales = db.Makaleler.Include(m => m.Kategori);
-
+            
             return View(makales.ToList());
         }
 
@@ -54,7 +54,7 @@ namespace SabihaninBlogProjesi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale, Resim r, HttpPostedFileBase resim)
         {
-            
+
             if (ModelState.IsValid)
             {
                 #region resimekleme
@@ -82,15 +82,21 @@ namespace SabihaninBlogProjesi.Controllers
                     if (ModelState.IsValid)
                         new BLL.BaseRepository<Resim>().Insert(r);
                     #endregion
-                    db.Resimler.Add(r);
+                     db.Resimler.Add(r);
                     db.Makaleler.Add(makale);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
+                else
+                {
+                    db.Makaleler.Add(makale);
+                    db.SaveChanges();
+                }
 
-               
-            } ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi", makale.KategoriID);
-                return View(makale);
+
+            }
+            ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi", makale.KategoriID);
+            return View(makale);
         }
 
         // GET: Makale/Edit/5
@@ -160,5 +166,60 @@ namespace SabihaninBlogProjesi.Controllers
             }
             base.Dispose(disposing);
         }
+        public ActionResult Ekle()
+        {
+            ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Ekle([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale, Resim r, HttpPostedFileBase resim)
+        {
+
+            if (ModelState.IsValid)
+            {
+                #region resimekleme
+                var klasor = Server.MapPath("/content/Upload/");
+                //resim geldiyse kaydet
+                if (resim != null && resim.ContentLength != 0)
+                {
+                    if (resim.ContentLength > 2 * 1024 * 1024)
+                    {
+                        ModelState.AddModelError(null, "Resim boyutu max 2MB olabilir");
+                    }
+                    else
+                    {
+                        try
+                        {
+                            FileInfo fi = new FileInfo(resim.FileName);
+                            var rasgele = Guid.NewGuid().ToString().Substring(0, 5);
+                            var dosyaAdi = fi.Name + rasgele + fi.Extension;
+                            resim.SaveAs(klasor + dosyaAdi);
+                            r.OrtaBoyut = dosyaAdi;
+                            makale.Resim.Add(r);
+                        }
+                        catch { }
+                    }
+                    if (ModelState.IsValid)
+                        new BLL.BaseRepository<Resim>().Insert(r);
+                    #endregion
+                    db.Resimler.Add(r);
+                    db.Makaleler.Add(makale);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    db.Makaleler.Add(makale);
+                    db.SaveChanges();
+                }
+
+
+            }
+            ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi", makale.KategoriID);
+            return View(makale);
+        }
+
     }
 }
