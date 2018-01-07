@@ -61,6 +61,30 @@
     <Compile Include="Migrations\201801041059305_kurulum.Designer.cs">
       <DependentUpon>201801041059305_kurulum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801071228431_yenilikler.cs" />
+    <Compile Include="Migrations\201801071228431_yenilikler.Designer.cs">
+      <DependentUpon>201801071228431_yenilikler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801071628181_makaleyeetiketekledm.cs" />
+    <Compile Include="Migrations\201801071628181_makaleyeetiketekledm.Designer.cs">
+      <DependentUpon>201801071628181_makaleyeetiketekledm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801071654190_etiketemakaleidekledimctora.cs" />
+    <Compile Include="Migrations\201801071654190_etiketemakaleidekledimctora.Designer.cs">
+      <DependentUpon>201801071654190_etiketemakaleidekledimctora.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801071800485_yorumtablosudegişiklik.cs" />
+    <Compile Include="Migrations\201801071800485_yorumtablosudegişiklik.Designer.cs">
+      <DependentUpon>201801071800485_yorumtablosudegişiklik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801071803507_yorumtablosudegişiklik2.cs" />
+    <Compile Include="Migrations\201801071803507_yorumtablosudegişiklik2.Designer.cs">
+      <DependentUpon>201801071803507_yorumtablosudegişiklik2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801071812403_yorumtablosudegişiklik3.cs" />
+    <Compile Include="Migrations\201801071812403_yorumtablosudegişiklik3.Designer.cs">
+      <DependentUpon>201801071812403_yorumtablosudegişiklik3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MyContext.cs" />
@@ -78,6 +102,24 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201801041059305_kurulum.resx">
       <DependentUpon>201801041059305_kurulum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801071228431_yenilikler.resx">
+      <DependentUpon>201801071228431_yenilikler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801071628181_makaleyeetiketekledm.resx">
+      <DependentUpon>201801071628181_makaleyeetiketekledm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801071654190_etiketemakaleidekledimctora.resx">
+      <DependentUpon>201801071654190_etiketemakaleidekledimctora.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801071800485_yorumtablosudegişiklik.resx">
+      <DependentUpon>201801071800485_yorumtablosudegişiklik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801071803507_yorumtablosudegişiklik2.resx">
+      <DependentUpon>201801071803507_yorumtablosudegişiklik2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801071812403_yorumtablosudegişiklik3.resx">
+      <DependentUpon>201801071812403_yorumtablosudegişiklik3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

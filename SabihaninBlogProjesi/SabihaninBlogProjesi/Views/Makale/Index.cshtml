@@ -20,6 +20,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Icerik)
         </th>
+        <th>
+    @Html.DisplayNameFor(model => model.Etiketim.Adi)
+</th>
     
         <th></th>
     </tr>
@@ -35,13 +38,33 @@
         <td>
             @Html.DisplayFor(modelItem => item.Icerik)
         </td>
-    
+        <td>
+            @Html.DisplayFor(modelItem => item.Etiketim.Adi)
+        </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MakaleID }) |
             @Html.ActionLink("Details", "Details", new { id=item.MakaleID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MakaleID })
-        </td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.MakaleID })
+              </td>
     </tr>
 }
 
 </table>
+@*<script>
+ <a onclick="sil(this)" data-id="@item.MakaleID">Delete</a>
+    function sil(hangiButon) {
+
+        var id = $(hangiButon).attr("data-id");
+        console.log(id);
+        $.ajax({
+            url: "/Makale/Makalesil",
+            method: "POST",
+            data: { "id": id },
+            success: function () {
+                $(hangiButon).parent().parent().slideUp();
+            }
+        })
+    }
+
+
+</script>*@

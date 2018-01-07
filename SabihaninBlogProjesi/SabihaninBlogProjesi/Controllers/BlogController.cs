@@ -16,20 +16,13 @@ namespace SabihaninBlogProjesi.Controllers
         MyContext db = new MyContext();
 
         BaseRepository<Ortak> brep = new BaseRepository<Ortak>();
-       
-        // GET: Blog
+        [Authorize]
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
-        }
-        [HttpGet]
-        [Authorize]
-    //    [ValidateAntiForgeryToken]
-        public ActionResult Profil()
-        {
            
-            var makales = db.Makaleler;
-            return View(makales.ToList());
-    }
+            return View(db.Makaleler.ToList());
+        }
+
     }
 }

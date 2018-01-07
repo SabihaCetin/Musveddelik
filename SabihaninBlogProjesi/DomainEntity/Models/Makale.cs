@@ -15,9 +15,10 @@ namespace DomainEntity.Models
         public Makale()
         {
             EklenmeTarihi = DateTime.Today;
-            this.Resim = new HashSet<Resim>();
-            this.Yorum = new HashSet<Yorum>();
-            this.Etiket = new HashSet<Etiket>();
+            this.Resimler = new HashSet<Resim>();
+            this.Yorumlar = new HashSet<Yorum>();
+            this.Etiketler = new HashSet<Etiket>();
+            
         }
         public int MakaleID { get; set; }
         public string Baslik { get; set; }
@@ -28,15 +29,16 @@ namespace DomainEntity.Models
         public Nullable<int> Begeni { get; set; }
         public Nullable<int> KullaniciID { get; set; }
 
+        public Etiket Etiketim { get; set; }
         public virtual Kategori Kategori { get; set; }
         public virtual Kullanici Kullanici { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Resim> Resim { get; set; }
+        public virtual ICollection<Resim> Resimler { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Yorum> Yorum { get; set; }
+        public virtual ICollection<Yorum> Yorumlar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Etiket> Etiket { get; set; }
+        public virtual ICollection<Etiket> Etiketler { get; set; }
 
     }
 }

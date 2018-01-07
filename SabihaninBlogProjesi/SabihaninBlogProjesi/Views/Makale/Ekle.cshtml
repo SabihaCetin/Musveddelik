@@ -7,10 +7,10 @@
 <h2>Ekle</h2>
 
 
-@using (Html.BeginForm("Ekle", "Makale", FormMethod.Post, new { @enctype = "multipart/form-data" })) 
+@using (Html.BeginForm("Ekle", "Makale", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+    @*@Html.Hidden("secimil")*@
     <div class="form-horizontal">
         <h4>Makale</h4>
         <hr />
@@ -32,20 +32,31 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Resim, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Etiketim.Adi, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input name="resim" type="file" />
-                 @Html.ValidationMessageFor(model => model.Resim, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Etiketim.Adi, new { htmlAttributes = new { @class = "form-control" } })
+               @*<input type="text" id="etiketadi" ondblclick="ekleme()"/><div id="di"></div>*@
+                @Html.ValidationMessageFor(model => model.Etiketim.Adi, "", new { @class = "text-danger" })
             </div>
-        </div>
+            
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Resimler, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input name="resim" type="file"   id="res"/>
+                    @Html.ValidationMessageFor(model => model.Resimler, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
             </div>
         </div>
     </div>
 }
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -54,3 +65,20 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script>
+    //$('#secimil').val("asdf");
+    function ekleme() {
+        var et = $("#etiketadi").val();
+       
+        $.ajax({
+            url: '/Makale/EtiketEkle',
+            data: {
+                "id":9 ,
+                "etiketAdi": et,
+            },
+
+            type: 'POST',
+    success: $("#di").html("Etiket Eklendi")
+        });
+    };
+</script>

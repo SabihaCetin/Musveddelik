@@ -1,0 +1,73 @@
+﻿@model IEnumerable<DomainEntity.Models.Makale>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Kategori.Adi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Baslik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Icerik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Kategori.Adi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Etiketler)
+        </th>
+        <th>
+    @Html.DisplayNameFor(model => model.Resimler)
+</th>
+  
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kategori.Adi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Baslik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Icerik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kategori.Adi)
+        </td>
+        <td>
+            @foreach (var item2 in item.Etiketler)
+            {
+                @Html.DisplayFor(modelItem => item2.Adi)
+            }
+           
+        </td>
+        <td>
+            @foreach (var item1 in item.Resimler)
+            {
+                <img src="~/Content/Upload/@item1.OrtaBoyut" />
+            }
+         
+        </td>
+       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MakaleID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MakaleID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MakaleID })
+        </td>
+    </tr>
+}
+
+</table>

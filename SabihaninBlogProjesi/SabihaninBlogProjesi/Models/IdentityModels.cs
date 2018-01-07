@@ -31,9 +31,9 @@ namespace SabihaninBlogProjesi.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<DomainEntity.Models.Makale> Makales { get; set; }
+        //public System.Data.Entity.DbSet<DomainEntity.Models.Makale> Makales { get; set; }
 
-        public System.Data.Entity.DbSet<DomainEntity.Models.Kategori> Kategoris { get; set; }
+        //public System.Data.Entity.DbSet<DomainEntity.Models.Kategori> Kategoris { get; set; }
 
         //public System.Data.Entity.DbSet<DomainEntity.Models.Kategori> Kategoris { get; set; }
 

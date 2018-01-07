@@ -1,0 +1,44 @@
+﻿@model DomainEntity.Models.Ortak
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.k.AdSoyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.k.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.k.Meslek)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.klar)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdSoyad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Meslek)
+            </td>
+
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MakaleID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MakaleID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MakaleID })
+            </td>*@
+        </tr>
+    }
+
+</table>

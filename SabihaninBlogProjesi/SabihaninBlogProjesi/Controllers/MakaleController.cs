@@ -1,27 +1,27 @@
-﻿using System;
+﻿using BLL;
+using DAL;
+using DomainEntity.Models;
+using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using DomainEntity.Models;
-using SabihaninBlogProjesi.Models;
-using DAL;
-using System.IO;
 
-namespace SabihaninBlogProjesi.Controllers
+namespace SabihaninBlogProjesi.Areas.Areas.Controllers
 {
     public class MakaleController : Controller
     {
-        //  private ApplicationDbContext db = new ApplicationDbContext();
+        MakaleRep mrep = new MakaleRep();
         MyContext db = new MyContext();
-        // GET: Makale
+        // GET: Areas/Makale
+        #region Makaleislemleri
         public ActionResult Index()
         {
             var makales = db.Makaleler.Include(m => m.Kategori);
-            
+
             return View(makales.ToList());
         }
 
@@ -38,6 +38,20 @@ namespace SabihaninBlogProjesi.Controllers
                 return HttpNotFound();
             }
             return View(makale);
+        }
+        
+        [HttpPost]
+        public void YorumYap(string yorum, int Makaleid)
+        {
+            Kullanici k = new Kullanici();
+            YorumRep yrep = new YorumRep();
+           
+          
+            var kullanici = db.Users.Where(i => i.Email == k.Email).FirstOrDefault();
+            var makale = db.Makaleler.Where(x => x.MakaleID == Makaleid).FirstOrDefault();
+            db.Yorumlar.Add(new DomainEntity.Yorum { Kullanici = kullanici, Makale = makale, EklenmeTarihi = DateTime.Now, YorumIcerik = yorum });
+            db.SaveChanges();
+            //return Json(false, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Makale/Create
@@ -75,14 +89,14 @@ namespace SabihaninBlogProjesi.Controllers
                             var dosyaAdi = fi.Name + rasgele + fi.Extension;
                             resim.SaveAs(klasor + dosyaAdi);
                             r.OrtaBoyut = dosyaAdi;
-                            makale.Resim.Add(r);
+                            makale.Resimler.Add(r);
                         }
                         catch { }
                     }
                     if (ModelState.IsValid)
                         new BLL.BaseRepository<Resim>().Insert(r);
                     #endregion
-                     db.Resimler.Add(r);
+                    db.Resimler.Add(r);
                     db.Makaleler.Add(makale);
                     db.SaveChanges();
                     return RedirectToAction("Index");
@@ -92,13 +106,10 @@ namespace SabihaninBlogProjesi.Controllers
                     db.Makaleler.Add(makale);
                     db.SaveChanges();
                 }
-
-
             }
             ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi", makale.KategoriID);
             return View(makale);
         }
-
         // GET: Makale/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -132,7 +143,7 @@ namespace SabihaninBlogProjesi.Controllers
             return View(makale);
         }
 
-        // GET: Makale/Delete/5
+        //GET: Makale/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -153,10 +164,26 @@ namespace SabihaninBlogProjesi.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Makale makale = db.Makaleler.Find(id);
-            db.Makaleler.Remove(makale);
-            db.SaveChanges();
+            //db.Makaleler.Remove(makale);
+            //db.SaveChanges();
+            mrep.Delete(id);
+
             return RedirectToAction("Index");
         }
+        //[HttpPost]
+        //public JsonResult MakaleSil(int id)
+        //{
+        //    try
+        //    {
+        //        mrep.Delete(id);
+        //        return Json(new { success = true, message = "Silindi" });
+        //    }
+        //    catch
+        //    {
+        //        return Json(new { success = false, message = "Bir hata oluştu." });
+        //    }
+        //}
+
 
         protected override void Dispose(bool disposing)
         {
@@ -171,12 +198,23 @@ namespace SabihaninBlogProjesi.Controllers
             ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi");
             return View();
         }
-
+        [HttpPost]
+        public void EtiketEkle(int id,string etiketAdi)
+        {
+            Etiket etiket = new Etiket();
+            etiket.Adi = etiketAdi;
+            etiket.MakaleID = id;
+            db.Etiketler.Add(etiket);
+            
+            db.SaveChanges();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Ekle([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale, Resim r, HttpPostedFileBase resim)
+        public ActionResult Ekle([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale, HttpPostedFileBase resim,string secimil)
         {
+            Etiket e = new Etiket();
 
+            Resim r = new Resim();
             if (ModelState.IsValid)
             {
                 #region resimekleme
@@ -197,13 +235,14 @@ namespace SabihaninBlogProjesi.Controllers
                             var dosyaAdi = fi.Name + rasgele + fi.Extension;
                             resim.SaveAs(klasor + dosyaAdi);
                             r.OrtaBoyut = dosyaAdi;
-                            makale.Resim.Add(r);
+                            makale.Resimler.Add(r);
                         }
                         catch { }
                     }
                     if (ModelState.IsValid)
                         new BLL.BaseRepository<Resim>().Insert(r);
                     #endregion
+                    
                     db.Resimler.Add(r);
                     db.Makaleler.Add(makale);
                     db.SaveChanges();
@@ -211,15 +250,22 @@ namespace SabihaninBlogProjesi.Controllers
                 }
                 else
                 {
+                    db.Etiketler.Add(e);
                     db.Makaleler.Add(makale);
                     db.SaveChanges();
                 }
-
+               
 
             }
+          
             ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi", makale.KategoriID);
             return View(makale);
         }
+    #endregion
+   
 
-    }
+
+}
+  
+
 }

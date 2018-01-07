@@ -66,3 +66,9 @@ C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\bin\Debug\Mi
 C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.dll
 C:\Users\nuuklu\Desktop\Github-Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.pdb
+C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.Migrations.yenilikler.resources
+C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.Migrations.makaleyeetiketekledm.resources
+C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.Migrations.etiketemakaleidekledimctora.resources
+C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.Migrations.yorumtablosudegişiklik.resources
+C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.Migrations.yorumtablosudegişiklik2.resources
+C:\Users\Sabiha Çetin\Desktop\Programlarim\Musveddelik\SabihaninBlogProjesi\DAL\obj\Debug\DAL.Migrations.yorumtablosudegişiklik3.resources

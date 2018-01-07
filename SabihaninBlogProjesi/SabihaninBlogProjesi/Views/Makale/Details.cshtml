@@ -73,3 +73,34 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.MakaleID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<div >
+    <textarea type="Text" id="yorum"> </textarea>
+    <br/>
+    <button type="button" class="btn btn-info" id="YorumYap">Yorum Yap</button>
+</div>
+@section scripts{
+    
+    <script>
+
+       
+            $("#YorumYap").click(function () {
+                var yorumumuz = $("#yorum").val();
+                $.ajax({
+                    url: "/Makale/YorumYap/", 
+                    type:"POST",
+                    data:{yorum:yorumumuz,
+                        "Makaleid":@Model.MakaleID,
+                       
+                        //dataType:"json",
+                        success: function(data){
+                            alert("Yorum Kaydedildi!");
+                        }
+                    }
+                });
+
+            });
+       
+    </script>
+
+
+    }
