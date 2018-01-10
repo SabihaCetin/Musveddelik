@@ -36,7 +36,8 @@ namespace BLL
             public void Delete(int id)
             {
                 var obj = MyContext.db.Set<T>().Find(id);
-            MyContext.db.Entry(obj).State = System.Data.Entity.EntityState.Deleted;
+            //MyContext.db.Entry(obj).State = System.Data.Entity.EntityState.Deleted;
+            MyContext.db.Set<T>().Remove(obj);
             MyContext.db.SaveChanges();
             }
             public void Update(T obj)

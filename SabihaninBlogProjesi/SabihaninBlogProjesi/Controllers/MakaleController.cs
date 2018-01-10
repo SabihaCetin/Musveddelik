@@ -170,19 +170,19 @@ namespace SabihaninBlogProjesi.Areas.Areas.Controllers
 
             return RedirectToAction("Index");
         }
-        //[HttpPost]
-        //public JsonResult MakaleSil(int id)
-        //{
-        //    try
-        //    {
-        //        mrep.Delete(id);
-        //        return Json(new { success = true, message = "Silindi" });
-        //    }
-        //    catch
-        //    {
-        //        return Json(new { success = false, message = "Bir hata oluştu." });
-        //    }
-        //}
+        [HttpPost]
+        public JsonResult MakaleSil(int id)
+        {
+            try
+            {
+               mrep.Delete(id);
+                return Json(new { success = true, message = "Silindi" });
+            }
+            catch
+            {
+                return Json(new { success = false, message = "Bir hata oluştu." });
+            }
+        }
 
 
         protected override void Dispose(bool disposing)
@@ -198,22 +198,13 @@ namespace SabihaninBlogProjesi.Areas.Areas.Controllers
             ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi");
             return View();
         }
-        [HttpPost]
-        public void EtiketEkle(int id,string etiketAdi)
-        {
-            Etiket etiket = new Etiket();
-            etiket.Adi = etiketAdi;
-            etiket.MakaleID = id;
-            db.Etiketler.Add(etiket);
-            
-            db.SaveChanges();
-        }
+
+        [ValidateInput(false)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Ekle([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale, HttpPostedFileBase resim,string secimil)
+        public ActionResult Ekle([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale, HttpPostedFileBase resim,string etik, string kateg)
         {
-            Etiket e = new Etiket();
-
+        
             Resim r = new Resim();
             if (ModelState.IsValid)
             {
@@ -242,7 +233,9 @@ namespace SabihaninBlogProjesi.Areas.Areas.Controllers
                     if (ModelState.IsValid)
                         new BLL.BaseRepository<Resim>().Insert(r);
                     #endregion
-                    
+                    Etiket e = new Etiket();
+                    e.Adi = etik;
+                    makale.Etiketler.Add(e);
                     db.Resimler.Add(r);
                     db.Makaleler.Add(makale);
                     db.SaveChanges();
@@ -250,6 +243,13 @@ namespace SabihaninBlogProjesi.Areas.Areas.Controllers
                 }
                 else
                 {
+              
+                    Etiket e = new Etiket();
+                    e.Adi = etik;
+                    Kategori k = new Kategori();
+                    k.Adi = kateg;
+                    db.Kategoriler.Add(k);
+                    makale.Etiketler.Add(e);
                     db.Etiketler.Add(e);
                     db.Makaleler.Add(makale);
                     db.SaveChanges();

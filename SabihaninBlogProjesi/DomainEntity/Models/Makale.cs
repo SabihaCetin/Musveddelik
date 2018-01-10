@@ -29,7 +29,7 @@ namespace DomainEntity.Models
         public Nullable<int> Begeni { get; set; }
         public Nullable<int> KullaniciID { get; set; }
 
-        public Etiket Etiketim { get; set; }
+       
         public virtual Kategori Kategori { get; set; }
         public virtual Kullanici Kullanici { get; set; }
 

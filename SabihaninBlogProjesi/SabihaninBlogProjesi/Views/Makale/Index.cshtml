@@ -20,10 +20,10 @@
         <th>
             @Html.DisplayNameFor(model => model.Icerik)
         </th>
+   
         <th>
-    @Html.DisplayNameFor(model => model.Etiketim.Adi)
-</th>
-    
+            @Html.DisplayNameFor(model => model.Etiketler)
+        </th>
         <th></th>
     </tr>
 
@@ -39,32 +39,36 @@
             @Html.DisplayFor(modelItem => item.Icerik)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Etiketim.Adi)
+       @foreach (var item1 in item.Etiketler)
+       {
+           <p>@item1.Adi</p>
+       }
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MakaleID }) |
             @Html.ActionLink("Details", "Details", new { id=item.MakaleID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.MakaleID })
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.MakaleID })*@
+            <a onclick="sil(this)" data-id="@item.MakaleID">Delete</a>
               </td>
     </tr>
 }
 
 </table>
-@*<script>
- <a onclick="sil(this)" data-id="@item.MakaleID">Delete</a>
+<script>
+ 
     function sil(hangiButon) {
 
         var id = $(hangiButon).attr("data-id");
-        console.log(id);
+        alert(id);
         $.ajax({
             url: "/Makale/Makalesil",
             method: "POST",
             data: { "id": id },
-            success: function () {
-                $(hangiButon).parent().parent().slideUp();
+            success: function () {().slideUp()
+                $(hangiButon).parent().parent;
             }
         })
     }
 
 
-</script>*@
+</script>

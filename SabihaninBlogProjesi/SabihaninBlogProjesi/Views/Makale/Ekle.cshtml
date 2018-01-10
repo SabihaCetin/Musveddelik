@@ -6,9 +6,15 @@
 
 <h2>Ekle</h2>
 
+<script src="~/Content/ckeditor_4.8.0_full/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('Icerik');
+</script>
+
 
 @using (Html.BeginForm("Ekle", "Makale", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
+
     @Html.AntiForgeryToken()
     @*@Html.Hidden("secimil")*@
     <div class="form-horizontal">
@@ -32,18 +38,22 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Etiketim.Adi, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Etiketler, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Etiketim.Adi, new { htmlAttributes = new { @class = "form-control" } })
-               @*<input type="text" id="etiketadi" ondblclick="ekleme()"/><div id="di"></div>*@
-                @Html.ValidationMessageFor(model => model.Etiketim.Adi, "", new { @class = "text-danger" })
+                <input type="text" name="etik" id="etiketadi" />
+                @Html.ValidationMessageFor(model => model.Etiketler, "", new { @class = "text-danger" })
             </div>
-            
-
+            <div class="form-group">
+                @Html.LabelFor(model => model.Kategori.Adi, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" name="kateg" />
+                    @Html.ValidationMessageFor(model => model.Kategori.Adi, "", new { @class = "text-danger" })
+                </div>
+            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Resimler, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <input name="resim" type="file"   id="res"/>
+                    <input name="resim" type="file" id="res" />
                     @Html.ValidationMessageFor(model => model.Resimler, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -53,6 +63,7 @@
                     <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </div>
+
         </div>
     </div>
 }
@@ -65,20 +76,3 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
-<script>
-    //$('#secimil').val("asdf");
-    function ekleme() {
-        var et = $("#etiketadi").val();
-       
-        $.ajax({
-            url: '/Makale/EtiketEkle',
-            data: {
-                "id":9 ,
-                "etiketAdi": et,
-            },
-
-            type: 'POST',
-    success: $("#di").html("Etiket Eklendi")
-        });
-    };
-</script>
