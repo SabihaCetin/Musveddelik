@@ -9,10 +9,17 @@ namespace SabihaninBlogProjesi
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+
+                "~/vendor/bootstrap/js/bootstrap.min.js",
+                "~/vendor/metisMenu/metisMenu.min.js",
+                "~/vendor/raphael/raphael.min.js",
+                "~/vendor/morrisjs/morris.min.js",
+                "~/data/morris-data.js",
+                "~/dist/js/sb-admin-2.js",
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                               
+
                 "~/Scripts/jquery-ui.min.js",
                 "~/Scripts/modernizr.js",
                 "~/Scripts/responsee.js",
@@ -22,7 +29,7 @@ namespace SabihaninBlogProjesi
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-
+               
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
@@ -30,9 +37,13 @@ namespace SabihaninBlogProjesi
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/template-style.css",
-                "~/Content/responsee.css",
-                "~/Content/components.css",
+
+
+                 "~/vendor/bootstrap/css/bootstrap.min.css",
+                "~/vendor/metisMenu/metisMenu.min.css",
+                "~/dist/css/sb-admin-2.css",
+                "~/vendor/morrisjs/morris.css",
+                "~/vendor/font-awesome/css/font-awesome.min.css",
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
         }

@@ -1,0 +1,104 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTema.cshtml";
+}
+
+@model IEnumerable<DomainEntity.Models.Makale>
+<style>
+    img,div, a,h2,p{
+        padding:0;
+        max-height:100%;
+        min-height:100%;
+        background-size:100% 100%;
+    }
+  
+</style>
+@helper IcerikKisalt(string metin)
+{
+if (metin.Length > 300)
+{
+        @metin.Substring(0, 300)
+}
+else
+{
+        @metin
+}
+}
+
+
+<section id="home-section" class="line">
+
+    <div class="margin">
+        <!-- ARTICLES -->
+        <div class="s-12 l-9">
+           
+@foreach (var item in Model)
+{
+   <article class='post-1 line'>
+    
+            <!-- ARTICLE 1 -->
+    <div class="uydurmadiv" style="border-bottom-color:aqua;border:inherit;border-bottom:dotted; height:600px;" >
+        <!-- image -->
+        <div class="s-12 l-6 post-image">
+            <a href="/Makale/Details/@item.MakaleID">
+                @foreach (var item1 in item.Resimler )
+                       {
+                        <img src="~/Content/Upload/@item1.OrtaBoyut" alt="Fashion 1">
+                       }
+            </a>
+        </div>
+        <!-- text -->
+        <div class="s-12 l-5 post-text">
+            <a href="post-1.html">
+                <h2>@item.Baslik</h2>
+            </a>
+           
+            <p><strong>Kategori: @item.Kategori</strong></p>
+            @foreach (var item1 in item.Etiketler)
+            {
+                <p><strong>Etiket: @item1.Adi</strong></p>
+            }
+          
+
+            <p>
+               @item.Icerik
+            </p>
+
+        </div>
+        <!-- date -->
+        <div class="s-12 l-1 post-date">
+            <p class="date">@item.EklenmeTarihi.Day</p>
+            <p class="month">@item.EklenmeTarihi.Month</p>
+        </div>
+    </div>
+    
+      </article>
+    
+ 
+
+
+}  
+        
+        </div>
+        <!-- SIDEBAR -->
+        <div class="s-12 l-3">
+            <aside>
+                <!-- NEWS 1 -->
+                <img src="~/img/news1.jpg" alt="News 1">
+                <div class="aside-block margin-bottom">
+                    <h3>This is the first news on blog</h3>
+                    <p>Lorem ipsum dolor sit amet, conse ctetuer. Duis autem vemeu iriure dolor adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam</p>
+                </div>
+                <!-- NEWS 2 -->
+                <img src="~/img/news2.jpg" alt="News 2">
+                <div class="aside-block margin-bottom">
+                    <h3>Second news on the fashion blog</h3>
+                    <p>Lorem ipsum dolor sit amet, conse ctetuer. Duis autem vemeu iriure dolor adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam</p>
+                </div>
+                <!-- AD REGION -->
+                <div class="advertising margin-bottom">
+                    <img src="~/img/banner.jpg" alt="ad banner">
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>

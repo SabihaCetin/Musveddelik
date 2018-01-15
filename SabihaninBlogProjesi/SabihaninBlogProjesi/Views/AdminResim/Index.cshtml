@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DomainEntity.Models.Resim>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Makale.Baslik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KucukBoyut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrtaBoyut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BuyukBoyut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Video)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Makale.Baslik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KucukBoyut)
+        </td>
+        <td>
+            <img src="~/Content/Upload/@item.OrtaBoyut" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BuyukBoyut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Video)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ResimID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ResimID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ResimID })
+        </td>
+    </tr>
+}
+
+</table>

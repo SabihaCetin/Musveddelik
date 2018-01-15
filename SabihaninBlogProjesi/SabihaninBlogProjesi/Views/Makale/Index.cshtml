@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<DomainEntity.Models.Makale>
-
+@{
+    Layout = "~/Views/Shared/_LayoutTema.cshtml";
+}
 @{
     ViewBag.Title = "Index";
 }
@@ -12,7 +14,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Kategori.Adi)
+    @Html.DisplayName("KulaniciAdı")
+</th>
+        <th>
+            @Html.DisplayName("Kategorisi")
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Baslik)
@@ -20,9 +25,11 @@
         <th>
             @Html.DisplayNameFor(model => model.Icerik)
         </th>
-   
         <th>
-            @Html.DisplayNameFor(model => model.Etiketler)
+            @Html.DisplayName("Resim")
+        </th>
+        <th>
+            @Html.DisplayName("Etiketler")
         </th>
         <th></th>
     </tr>
@@ -30,13 +37,25 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Kategori.Adi)
+            @Html.DisplayFor(modelItem => item.Kullanici.AdSoyad)
+
+        </td>
+        <td>
+         @Html.DisplayFor(modelItem => item.Kategori.Adi)
+       
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Baslik)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Icerik)
+        </td>
+        <td>
+            @foreach (var item1 in item.Resimler)
+            {
+                <img src="~/Content/Upload/@item1.OrtaBoyut" />
+            }
+
         </td>
         <td>
        @foreach (var item1 in item.Etiketler)
@@ -59,13 +78,13 @@
     function sil(hangiButon) {
 
         var id = $(hangiButon).attr("data-id");
-        alert(id);
+        
         $.ajax({
             url: "/Makale/Makalesil",
             method: "POST",
             data: { "id": id },
-            success: function () {().slideUp()
-                $(hangiButon).parent().parent;
+            success: function () {
+                $(hangiButon).parent().parent().slideUp();
             }
         })
     }

@@ -35,6 +35,30 @@ namespace SabihaninBlogProjesi.Models
 
         //public System.Data.Entity.DbSet<DomainEntity.Models.Kategori> Kategoris { get; set; }
 
+        //public System.Data.Entity.DbSet<DomainEntity.Models.Etiket> Etikets { get; set; }
+
+        //public System.Data.Entity.DbSet<DomainEntity.Models.Resim> Resims { get; set; }
+
+        //public System.Data.Entity.DbSet<DomainEntity.Models.Makale> Makales { get; set; }
+
+        //public System.Data.Entity.DbSet<DomainEntity.Yorum> Yorums { get; set; }
+
+        //public System.Data.Entity.DbSet<DomainEntity.Models.Makale> Makales { get; set; }
+
+        //public System.Data.Entity.DbSet<DomainEntity.Models.Kategori> Kategoris { get; set; }
+
+        //public System.Data.Entity.DbSet<DomainEntity.Models.Makale> Makales { get; set; }
+
+        //public System.Data.Entity.DbSet<DomainEntity.Models.Kategori> Kategoris { get; set; }
+
+        //public System.Data.Entity.DbSet<DomainEntity.Models.Kullanici> Kullanicis { get; set; }
+
+        //public System.Data.Entity.DbSet<SabihaninBlogProjesi.Models.ApplicationUser> ApplicationUsers { get; set; }
+
+        //public System.Data.Entity.DbSet<DomainEntity.Models.Makale> Makales { get; set; }
+
+        //public System.Data.Entity.DbSet<DomainEntity.Models.Kategori> Kategoris { get; set; }
+
         //public System.Data.Entity.DbSet<DomainEntity.Models.Kategori> Kategoris { get; set; }
 
         //public System.Data.Entity.DbSet<DomainEntity.Models.Makale> Makales { get; set; }

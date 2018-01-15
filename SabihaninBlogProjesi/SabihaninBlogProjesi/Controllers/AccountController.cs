@@ -12,6 +12,8 @@ using SabihaninBlogProjesi.Models;
 using DomainEntity.Models;
 using DAL;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.IO;
+using BLL;
 
 namespace SabihaninBlogProjesi.Controllers
 {
@@ -65,7 +67,7 @@ namespace SabihaninBlogProjesi.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
-
+ 
         //
         // POST: /Account/Login
         [HttpPost]
@@ -73,6 +75,7 @@ namespace SabihaninBlogProjesi.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -84,7 +87,7 @@ namespace SabihaninBlogProjesi.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    
+                    Session["username"] = model.Email;
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -96,7 +99,7 @@ namespace SabihaninBlogProjesi.Controllers
                     return View(model);
             }
         }
-
+        
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
@@ -147,15 +150,45 @@ namespace SabihaninBlogProjesi.Controllers
         {
             return View();
         }
-        
-     
+
+        MyContext db = new MyContext();
         //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase resim)
         {
+            #region ResimEkleme
+
+            var klasor = Server.MapPath("/content/Upload/");
+            //resim geldiyse kaydet
+            if (resim != null && resim.ContentLength != 0)
+            {
+                if (resim.ContentLength > 2 * 1024 * 1024)
+                {
+                    ModelState.AddModelError(null, "Resim boyutu max 2MB olabilir");
+                }
+                else
+                {
+                    try
+                    {
+                        FileInfo fi = new FileInfo(resim.FileName);
+                        var rasgele = Guid.NewGuid().ToString().Substring(0, 5);
+                        var dosyaAdi = fi.Name + rasgele + fi.Extension;
+                        resim.SaveAs(klasor + dosyaAdi);
+                        model.Resim = dosyaAdi;
+                    }
+                    catch { }
+                }
+                //if (ModelState.IsValid)
+                //    db.Users.Add(model);
+                   
+            }
+            
+        
+
+            #endregion
             if (ModelState.IsValid)
             {
                 UserStore<Kullanici> str = new UserStore<Kullanici>(new MyContext());

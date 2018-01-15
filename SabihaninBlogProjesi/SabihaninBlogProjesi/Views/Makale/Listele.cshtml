@@ -1,0 +1,75 @@
+﻿@model IEnumerable<DomainEntity.Models.Makale>
+
+@{
+    ViewBag.Title = "Listele";
+    Layout = "~/Views/Shared/_LayoutTema.cshtml";
+}
+<body class="size-1140">
+  
+    <section id="home-section" class="line">
+        <div class="margin">
+            <h2>Listele</h2>
+
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+
+            @{ int i = 0; }
+            @foreach (var item in Model)
+            {
+                i++;
+                var classAdi = "";
+                switch (i)
+                {
+                    case 1:
+                        classAdi = "panel panel-danger";
+                        break;
+                    case 2:
+                        classAdi = "panel panel-primary";
+                        break;
+                    case 3:
+                        classAdi = "panel panel-success";
+                        break;
+                    case 4:
+                        classAdi = "panel panel-info";
+                        break;
+                    case 5:
+                        classAdi = "panel panel-warning";
+                        break;
+                    case 6:
+                        classAdi = "panel panel-green";
+                        break;
+                    case 7:
+                        classAdi = "panel panel-yellow";
+                        break;
+                    case 8:
+                        classAdi = "panel panel-info";
+                        break;
+                    case 9:
+                        classAdi = "panel panel-red";
+                        break;
+
+
+                }
+
+                <div class="col-lg-4">
+
+                    <div class="@classAdi">
+
+                        <div class="panel-heading">
+                            @item.Baslik
+                        </div>
+                        <div class="panel-body">
+                            <p>@item.Icerik</p>
+                        </div>
+                        <div class="panel-footer">
+                            @item.Baslik
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </section>
+
+</body>

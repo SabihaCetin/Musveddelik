@@ -17,6 +17,7 @@ namespace DomainEntity.Models
         public int KAtegoriID { get; set; }
         public string Adi { get; set; }
         public string Aciklama { get; set; }
+        
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Makale> Makale { get; set; }

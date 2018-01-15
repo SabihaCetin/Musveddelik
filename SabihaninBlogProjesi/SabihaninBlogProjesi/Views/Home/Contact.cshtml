@@ -1,17 +1,80 @@
-﻿@{
-    ViewBag.Title = "Contact";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿
+@model List<DomainEntity.Models.Makale>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Visual-Bakerlang-Shillong</title>
+    <link rel="stylesheet" href="~/Content/CustomProfilSite.css" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" />
+</head>
+<body>
+    <img class="image" src="https://templated.co/items/demos/visualize/images/avatar.jpg" />
+    <h1>This is <strong>Visualize</strong>, a responsive site template designed by Bakerlang a Student of SIIT under TechSoul.</h1>
+    <div class="socialmedia">
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-instagram"></i></a>
+        <a href="#"><i class="fa fa-tumblr"></i></a>
+    </div>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+    @*<div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <img src="http://25.media.tumblr.com/tumblr_m411ji0JVd1qib5bvo1_500.jpg" />
+                    <p>@item.Baslik</p>
+                </div>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+            }
+        </div>*@
+    @{ int i = 0;}
+    @foreach (var item in Model)
+    {
+        if (i % 2 == 0)
+        {
+            @Html.Raw("<div class='tripple'>")
+        }
+
+        <div class="boximg ">
+            <img src="http://25.media.tumblr.com/tumblr_m411ji0JVd1qib5bvo1_500.jpg" />
+            <p>@item.Baslik</p>
+        </div>
+
+        if (i % 2 == 1)
+        {
+            @Html.Raw("</div>")
+        }
+        i++;
+    }
+
+    <div class="tripple">
+        <div class="boximg">
+            <img src="https://templated.co/items/demos/visualize/images/thumbs/06.jpg" />
+            <p>Lorem ipsum dolor sit amet</p>
+        </div>
+        <div class="boximg">
+            <img src="https://templated.co/items/demos/visualize/images/thumbs/07.jpg" />
+            <p>Lorem ipsum dolor sit amet</p>
+        </div>
+    </div>
+    <div class="tripple">
+        <div class="boximg">
+            <img src="https://templated.co/items/demos/visualize/images/thumbs/03.jpg" />
+            <p>Lorem ipsum dolor sit amet</p>
+        </div>
+        <div class="boximg">
+            <img src="http://netdna.coolthings.com/wp-content/uploads/2014/09/stacked-hong-kong-peter-stewart-1.jpg" />
+            <p>Lorem ipsum dolor sit amet</p>
+        </div>
+
+        <div class="boximg">
+            <img src="https://templated.co/items/demos/visualize/images/thumbs/02.jpg" />
+            <p>Lorem ipsum dolor sit amet</p>
+        </div>
+    </div>
+    <hr />
+    <p class="footer" align="center">© Untitled. All rights reserved. Design: SIIT. Demo Images: Google.</p>
+</body>
+</html>

@@ -1,0 +1,59 @@
+﻿@model DomainEntity.Models.Resim
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Resim</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Makale.Baslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Makale.Baslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KucukBoyut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KucukBoyut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrtaBoyut)
+        </dt>
+
+        <dd>
+            <img src="~/Content/Upload/@Model.OrtaBoyut"/>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuyukBoyut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuyukBoyut)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Video)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Video)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ResimID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

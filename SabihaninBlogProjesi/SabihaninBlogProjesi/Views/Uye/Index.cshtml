@@ -1,0 +1,129 @@
+﻿@model List<DomainEntity.Models.Makale>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@helper IcerikKisalt(string metin)
+{
+if (metin.Length > 500)
+{
+        @metin.Substring(0, 500)
+}
+else
+{
+        @metin
+}
+}
+<h2>Index</h2>
+
+<!-- /.row -->
+<div class="row">
+    @{ int i = 0; }
+    @foreach (var item in Model)
+    {
+        i++;
+        var classAdi = "";
+        switch (i)
+        {
+            case 1:
+                classAdi = "panel panel-red";
+                break;
+            case 2:
+                classAdi = "panel panel-primary";
+                break;
+            case 3:
+                classAdi = "panel panel-success";
+                break;
+            case 4:
+                classAdi = "panel panel-info";
+                break;
+            case 5:
+                classAdi = "panel panel-warning";
+                break;
+            case 6:
+                classAdi = "panel panel-green";
+                break;
+            case 7:
+                classAdi = "panel panel-yellow";
+                break;
+            case 8:
+                classAdi = "panel panel-red";
+                break;
+            case 9:
+                classAdi = "panel panel-default";
+                break;
+
+
+        }
+
+        <div class="col-lg-4">
+
+            <div class="@classAdi" >
+
+
+                @foreach (var item1 in Model)
+                {
+                    if (@item1.Etiketler.Where(x => x.EtiketID == item.MakaleID).Count() != 0)
+                    {
+                        <div class="panel-heading" style="display:block">
+                            <div >
+                               Etiket: @item1.Etiketler.Where(x => x.EtiketID == item.MakaleID).Select(x => x.Adi).FirstOrDefault()
+                                <p onclick="kalp()" id="kkk" style="float:right" data-id="ddd">Kalp</p></div>
+                        </div>
+
+                    }
+                    @*else
+                    {
+                        <div class="panel-heading" style="display:block">
+                            <div>
+                                Etiket: Yok
+                                <p onclick="kalp()" id="kkk" style="float:right" data-id="ddd">Kalp</p>
+                            </div>
+                        </div>
+
+                    }*@
+                }
+
+                <div class="panel-body" style="display:block">
+                    <h4>@item.Baslik</h4>
+                    <p>@IcerikKisalt(@item.Icerik)  </p><a href="/Uye/Details?id=@item.MakaleID" id="klp" style="display:inline">devamı...</a>
+                </div>
+                <div class="panel-footer">
+                    <p style="display:inline-block">
+                        @item.EklenmeTarihi.Date.Day / @item.EklenmeTarihi.Date.Month / @item.EklenmeTarihi.Date.Year
+                    </p>
+                    @*@if (Request.IsAuthenticated)
+                    {
+                       if (Session["username"].ToString()=="Yonetici")
+                       {
+                    <p style="display:inline-block; float:right" >
+                        @Html.ActionLink("Düzenle", "Edit", new { id = item.MakaleID }) |
+                        @Html.ActionLink("Detay", "Details", new { id = item.MakaleID }) |
+                        @Html.ActionLink("Sil", "Delete", new { id = item.MakaleID })
+                    </p>
+                       }
+                       else
+                       {
+                        <p style="display:inline-block; float:right">
+                            @Html.ActionLink("Detay", "Details", new { id = item.MakaleID }) |
+                        </p>
+                       } 
+                    }*@
+</div>
+            </div>
+        </div>
+
+    }
+</div>
+
+<script>
+    function kalp() {
+        alert("gfgdg" );
+
+        var ccc = $(this).data(attr("data-id"));
+
+        alert(ccc);
+    }
+
+</script>

@@ -24,7 +24,7 @@ namespace DomainEntity.Models
         public string Baslik { get; set; }
         public string Icerik { get; set; }
         public System.DateTime EklenmeTarihi { get; set; }
-        public int? KategoriID { get; set; }
+        public Nullable<int> KategoriID { get; set; }
         public Nullable<int> GoruntulenmeSayisi { get; set; }
         public Nullable<int> Begeni { get; set; }
         public Nullable<int> KullaniciID { get; set; }

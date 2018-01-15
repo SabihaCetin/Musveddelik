@@ -1,0 +1,257 @@
+﻿@model DomainEntity.Models.Makale
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style class="cp-pen-styles">
+    html, body {
+        background-color: #f0f2fa;
+        font-family: "PT Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+        color: #555f77;
+        -webkit-font-smoothing: antialiased;
+    }
+    input, textarea {
+        outline: none;
+        border: none;
+        display: block;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+        font-family: "PT Sans", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+        font-size: 1rem;
+        color: #555f77;
+    }
+        input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+            color: #ced2db;
+        }
+
+        input::-moz-placeholder, textarea::-moz-placeholder {
+            color: #ced2db;
+        }
+
+        input:-moz-placeholder, textarea:-moz-placeholder {
+            color: #ced2db;
+        }
+
+        input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+            color: #ced2db;
+        }
+
+    p {
+        line-height: 1.3125rem;
+    }
+
+    .comments {
+        margin: 2.5rem auto 0;
+        max-width: 60.75rem;
+        padding: 0 1.25rem;
+    }
+
+    .comment-wrap {
+        margin-bottom: 1.25rem;
+        display: table;
+        width: 100%;
+        min-height: 5.3125rem;
+    }
+
+    .photo {
+        padding-top: 0.625rem;
+        display: table-cell;
+        width: 3.5rem;
+    }
+
+        .photo .avatar {
+            height: 2.25rem;
+            width: 2.25rem;
+            border-radius: 50%;
+            background-size: contain;
+        }
+
+    .comment-block {
+        padding: 1rem;
+        background-color: #fff;
+        display: table-cell;
+        vertical-align: top;
+        border-radius: 0.1875rem;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+    }
+
+        .comment-block textarea {
+            width: 100%;
+            resize: none;
+        }
+
+    .comment-text {
+        margin-bottom: 1.25rem;
+    }
+
+    .bottom-comment {
+        color: #acb4c2;
+        font-size: 0.875rem;
+    }
+
+    .comment-date {
+        float: left;
+    }
+
+    .comment-actions {
+        float: right;
+    }
+
+        .comment-actions li {
+            display: inline;
+            margin: -2px;
+            cursor: pointer;
+        }
+
+            .comment-actions li.complain {
+                padding-right: 0.75rem;
+                border-right: 1px solid #e1e5eb;
+            }
+
+            .comment-actions li.reply {
+                padding-left: 0.75rem;
+                padding-right: 0.125rem;
+            }
+
+            .comment-actions li:hover {
+                color: #0095ff;
+            }
+</style>
+<h2>Details</h2>
+
+<div>
+    <h4>Makale</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategori.Adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategori.Adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Baslik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Baslik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Icerik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Icerik)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Etiketler)
+        </dt>
+
+        <dd>
+            @foreach (var item in Model.Etiketler)
+            {
+                <div>@item.Adi</div>
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GoruntulenmeSayisi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoruntulenmeSayisi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Begeni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Begeni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resimler)
+        </dt>
+
+        <dd>
+
+            @foreach (var item in Model.Resimler)
+            {
+                <img src="~/Content/Upload/@item.OrtaBoyut" style="width:200px" />
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MakaleID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<div class="comments">
+
+    <div class="comment-wrap">
+        <div class="photo">
+            <div class="avatar" style="background-image: url('https://s3.amazonaws.com/uifaces/faces/twitter/dancounsell/128.jpg')"></div>
+        </div>
+        <div class="comment-block">
+            <form action="">
+                <textarea name="" id="yorum" cols="700" rows="2" placeholder="Add comment..."></textarea>
+            </form>
+        </div>
+        <button type="button" class="btn btn-info" id="YorumYap">Yorum Yap</button>
+    </div>
+
+    @foreach (var item in Model.Yorumlar)
+            {
+        <div class="comment-wrap">
+            <div class="photo">
+                <div class="avatar"><img class="avatar" src="~/Content/Upload/@Model.Kullanici.Resim" /></div>
+            </div>
+            <div class="comment-block">
+                <p class="comment-text">@item.YorumIcerik</p>
+                <div class="bottom-comment">
+                    <div class="comment-date">@item.EklenmeTarihi</div>
+                    <ul class="comment-actions">
+                        <li class="complain"></li>
+                        <li class="reply"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+    <br>
+</div>
+
+
+@section scripts{
+
+    <script>
+
+
+        $("#YorumYap").click(function () {
+            var yorumumuz = $("#yorum").val();
+            $.ajax({
+                url: "/AdminMakale/Yorumyap/",
+                type:"POST",
+                data:{yorum:yorumumuz,
+                    "Makaleid":@Model.MakaleID,
+
+                    //dataType:"json",
+                    success: function(data){
+                        alert("Yorum Kaydedildi!");
+                    }
+                }
+            });
+
+        });
+
+    </script>
+}

@@ -25,5 +25,8 @@ namespace DAL
         public virtual DbSet<Etiket> Etiketler { get; set; }
         public virtual DbSet<Resim> Resimler { get; set; }
 
+        //public System.Data.Entity.DbSet<DomainEntity.Models.Kullanici> Kullanicis { get; set; }
+
+        //public System.Data.Entity.DbSet<SabihaninBlogProjesi.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

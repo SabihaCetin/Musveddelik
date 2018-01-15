@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 namespace DomainEntity.Models
 {
     public partial class Resim
-    {
+    {   [Key]
         public int ResimID { get; set; }
         public string KucukBoyut { get; set; }
         public string OrtaBoyut { get; set; }

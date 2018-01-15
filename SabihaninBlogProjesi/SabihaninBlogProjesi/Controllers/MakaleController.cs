@@ -18,8 +18,10 @@ namespace SabihaninBlogProjesi.Areas.Areas.Controllers
         MyContext db = new MyContext();
         // GET: Areas/Makale
         #region Makaleislemleri
+
         public ActionResult Index()
         {
+
             var makales = db.Makaleler.Include(m => m.Kategori);
 
             return View(makales.ToList());
@@ -39,14 +41,14 @@ namespace SabihaninBlogProjesi.Areas.Areas.Controllers
             }
             return View(makale);
         }
-        
+
         [HttpPost]
         public void YorumYap(string yorum, int Makaleid)
         {
             Kullanici k = new Kullanici();
             YorumRep yrep = new YorumRep();
-           
-          
+
+
             var kullanici = db.Users.Where(i => i.Email == k.Email).FirstOrDefault();
             var makale = db.Makaleler.Where(x => x.MakaleID == Makaleid).FirstOrDefault();
             db.Yorumlar.Add(new DomainEntity.Yorum { Kullanici = kullanici, Makale = makale, EklenmeTarihi = DateTime.Now, YorumIcerik = yorum });
@@ -95,14 +97,21 @@ namespace SabihaninBlogProjesi.Areas.Areas.Controllers
                     }
                     if (ModelState.IsValid)
                         new BLL.BaseRepository<Resim>().Insert(r);
-                    #endregion
+                    var kadi = Session["username"].ToString();
+                    var kullanici = db.Users.Where(x => x.UserName == kadi).SingleOrDefault();
+                    makale.Kullanici = kullanici;
                     db.Resimler.Add(r);
                     db.Makaleler.Add(makale);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-                else
+                #endregion
+                if (ModelState.IsValid)
                 {
+                    var kadi = Session["username"].ToString();
+                    var kullanici = db.Users.Where(x => x.UserName == kadi).SingleOrDefault();
+                    makale.Kullanici = kullanici;
+
                     db.Makaleler.Add(makale);
                     db.SaveChanges();
                 }
@@ -175,12 +184,15 @@ namespace SabihaninBlogProjesi.Areas.Areas.Controllers
         {
             try
             {
-               mrep.Delete(id);
+                var res = db.Resimler.Where(x => x.MakaleID == id).ToList();
+                var obj = db.Makaleler.Find(id);
+                //obj.Resimler.Remove() ;
+                mrep.Delete(id);
                 return Json(new { success = true, message = "Silindi" });
             }
-            catch
+            catch (Exception e)
             {
-                return Json(new { success = false, message = "Bir hata oluştu." });
+                return Json(new { success = false, message = e.Data + "Bir hata oluştu." });
             }
         }
 
@@ -193,18 +205,27 @@ namespace SabihaninBlogProjesi.Areas.Areas.Controllers
             }
             base.Dispose(disposing);
         }
+        [Authorize]
+        [ValidateInput(false)]
         public ActionResult Ekle()
         {
+
+
             ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi");
+
             return View();
         }
+        public ActionResult Listele()
+        {
+            var mak = db.Makaleler.ToList();
+            return View(mak);
+        }
 
-        [ValidateInput(false)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Ekle([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale, HttpPostedFileBase resim,string etik, string kateg)
+        public ActionResult Ekle([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale, HttpPostedFileBase resim, string etik, string kateg, string kullanicim)
         {
-        
+
             Resim r = new Resim();
             if (ModelState.IsValid)
             {
@@ -231,41 +252,36 @@ namespace SabihaninBlogProjesi.Areas.Areas.Controllers
                         catch { }
                     }
                     if (ModelState.IsValid)
+                    {
                         new BLL.BaseRepository<Resim>().Insert(r);
+                        #endregion
+                        Etiket e = new Etiket();
+                        e.Adi = etik;
+                        makale.Etiketler.Add(e);
+                        db.Etiketler.Add(e);
+                        db.Resimler.Add(r);
+                        db.Makaleler.Add(makale);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
                     #endregion
-                    Etiket e = new Etiket();
-                    e.Adi = etik;
-                    makale.Etiketler.Add(e);
-                    db.Resimler.Add(r);
-                    db.Makaleler.Add(makale);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    else
+                    {
+                        var ku = db.Users.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
+                        makale.Kullanici = ku;
+                        Etiket e = new Etiket();
+                        e.Adi = etik;
+                        makale.Etiketler.Add(e);
+                        db.Etiketler.Add(e);
+                        db.Makaleler.Add(makale);
+                        db.SaveChanges();
+                    }
                 }
-                else
-                {
-              
-                    Etiket e = new Etiket();
-                    e.Adi = etik;
-                    Kategori k = new Kategori();
-                    k.Adi = kateg;
-                    db.Kategoriler.Add(k);
-                    makale.Etiketler.Add(e);
-                    db.Etiketler.Add(e);
-                    db.Makaleler.Add(makale);
-                    db.SaveChanges();
-                }
-               
-
             }
-          
             ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi", makale.KategoriID);
             return View(makale);
+
         }
-    #endregion
-   
 
-
-}
-  
-
+    }
 }
