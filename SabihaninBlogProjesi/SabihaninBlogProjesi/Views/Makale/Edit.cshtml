@@ -2,16 +2,14 @@
 
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    Layout = "~/Views/Shared/_NavbarLayour.cshtml";}
 
 <h2>Edit</h2>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Makale", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Makale</h4>
         <hr />
@@ -67,10 +65,28 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.KullaniciID, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Resimler, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.KullaniciID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.KullaniciID, "", new { @class = "text-danger" })
+                @foreach (var item in Model.Resimler)
+                {
+                    <img src="~/Content/Upload/@item.OrtaBoyut" style="width:200px" />
+                }
+                <input name="resim" type="file" id="res" />
+                @Html.ValidationMessageFor(model => model.Resimler, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Etiketler, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div id="EtiketList">
+                    @foreach (var item in Model.Etiketler)
+                    {
+                        <input type="text" name="etik" id="etiketadi" onload="yuk()" value="@item.Adi" />
+
+                    }
+
+                </div>
+                @Html.ValidationMessageFor(model => model.Etiketler, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -85,7 +101,9 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script>
+    function yuk(){
+    $("#EtiketList").append(" <input type='text' name='etik' id='etiketadi' />");
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    }
+</script>

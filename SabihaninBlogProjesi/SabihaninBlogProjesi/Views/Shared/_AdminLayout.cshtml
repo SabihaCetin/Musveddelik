@@ -18,7 +18,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin Panel</title>
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -49,23 +48,17 @@
  
 </head>
 
-<body style="background-color:mediumslateblue">
+<body >
    
     <div id="wrapper">
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color:violet">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html" style="color:black;"> Admin Panelim</a>
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin:0px; background-color:#ea87d5">
+            <div class="navbar-header" ;>
+                <a class="navbar-brand" href="/Uye/Index" style="color:black;margin:0px auto auto 100px;padding:0px;"><img src="~/Content/ııı.png" height="40" style="margin:0px auto auto auto " /></a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
+                @*<li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="glyphicon glyphicon-envelope"></i> <i class="glyphicon glyphicon-arrow-down"></i>
                     </a>
@@ -243,7 +236,7 @@
                                     <span class="pull-right text-muted small">4 minutes ago</span>
                                 </div>
                             </a>
-                        </li>*@
+                        </li>
                         <li class="divider"></li>
                         <li>
                             <a class="text-center" href="#">
@@ -253,7 +246,7 @@
                         </li>
                     </ul>
                     <!-- /.dropdown-alerts -->
-                </li>
+                </li>*@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -261,20 +254,26 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
-                            <a href="#"><i class="glyphicon glyphicon-user"></i> User Profile</a>
+                            <a href="Uye/Profil/"><i class="glyphicon glyphicon-user"></i> User Profile</a>
                         </li>
                         <li>
-                            <a href="#"><i class="glyphicon glyphicon-cog"></i> Settings</a>
+                            <a href="/Uye/Edit"><i class="glyphicon glyphicon-cog"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li>
-                            <a href="login.html"><i class="glyphicon glyphicon-log-out"></i> Logout</a>
-                        </li>
+                        @if (Request.IsAuthenticated)
+                        {
+                            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {    @Html.AntiForgeryToken()
+                                <li>
+                                    <a href="javascript:document.getElementById('logoutForm').submit()"><i class="glyphicon glyphicon-log-out"></i>Log off</a>
+                                </li>
+                            }
+                        }
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
                 <li>
-                    Merhaba @Session["username"] !
+                    Merhaba Admin !
                 </li>
                 <!-- /.dropdown -->
             </ul>
@@ -294,10 +293,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="/Admin"><i class=".glyphicon-glyphicon-dashboard"></i> Kontrol Paneli</a>
+                            <a href="/AdminMakale/Home"><i class=".glyphicon-glyphicon-dashboard"></i> Kontrol Paneli</a>
                         </li>
                         <li>
-                            <a href="/AdminMakale/Index/"> <i class="glyphicon glyphicon-book"></i> Makaleler <span class="glyphicon glyphicon-menu-down"></span></a>
+                            <a href="/AdminMakale"><i class="glyphicon glyphicon-book"></i> Makaleler</a>
+                        </li>
+                        <li >
+                            <a href="/AdminMakale/Index/"> <i class="glyphicon glyphicon-bookmark"></i> Etiket/Resim @*<span class="glyphicon glyphicon-menu-down"></span>*@</a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="/AdminEtiket">Etiketler</a>
@@ -314,7 +316,7 @@
                         <li>
                             <a href="/AdminKategori"><i class="glyphicon glyphicon-hdd"></i> Kategoriler</a>
                         </li>
-                        <li>
+                        @*<li>
                             <a href="#"><i class="glyphicon glyphicon-wrench"></i> UI Elements<span class="glyphicon glyphicon-menu-down"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
@@ -379,7 +381,7 @@
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -417,4 +419,6 @@
 </html>
 
 
-    
+    <script>
+       
+    </script>

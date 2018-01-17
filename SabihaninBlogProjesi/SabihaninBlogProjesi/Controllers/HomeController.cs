@@ -10,6 +10,7 @@ namespace SabihaninBlogProjesi.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.ReturnUrl = "Home/Index/";
             return View();
         }
 

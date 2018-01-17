@@ -1,6 +1,7 @@
 ﻿using BLL;
 using DAL;
 using DomainEntity.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -47,34 +48,36 @@ namespace SabihaninBlogProjesi.Areas.Areas.Controllers
         {
             Kullanici k = new Kullanici();
             YorumRep yrep = new YorumRep();
+            var kulID = User.Identity.GetUserId();
 
-
-            var kullanici = db.Users.Where(i => i.Email == k.Email).FirstOrDefault();
+            var kul = db.Users.Where(m => m.Id == kulID).FirstOrDefault();
+           
             var makale = db.Makaleler.Where(x => x.MakaleID == Makaleid).FirstOrDefault();
-            db.Yorumlar.Add(new DomainEntity.Yorum { Kullanici = kullanici, Makale = makale, EklenmeTarihi = DateTime.Now, YorumIcerik = yorum });
+            db.Yorumlar.Add(new DomainEntity.Yorum { Kullanici = kul, Makale = makale, EklenmeTarihi = DateTime.Now, YorumIcerik = yorum });
             db.SaveChanges();
             //return Json(false, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Makale/Create
+        // GET: AdminMakale/Create
         public ActionResult Create()
         {
             ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi");
             return View();
         }
 
-        // POST: Makale/Create
+        // POST: AdminMakale/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale, Resim r, HttpPostedFileBase resim)
+        public ActionResult Create([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale, HttpPostedFileBase resim, string[] etik, string kateg)
         {
-
+            Resim r = new Resim();
             if (ModelState.IsValid)
             {
                 #region resimekleme
-                var klasor = Server.MapPath("/content/Upload/");
+                var klasor = Server.MapPath("/Content/Upload/");
                 //resim geldiyse kaydet
                 if (resim != null && resim.ContentLength != 0)
                 {
@@ -92,34 +95,61 @@ namespace SabihaninBlogProjesi.Areas.Areas.Controllers
                             resim.SaveAs(klasor + dosyaAdi);
                             r.OrtaBoyut = dosyaAdi;
                             makale.Resimler.Add(r);
+                            new BLL.BaseRepository<Resim>().Insert(r);
                         }
                         catch { }
                     }
-                    if (ModelState.IsValid)
-                        new BLL.BaseRepository<Resim>().Insert(r);
-                    var kadi = Session["username"].ToString();
-                    var kullanici = db.Users.Where(x => x.UserName == kadi).SingleOrDefault();
-                    makale.Kullanici = kullanici;
-                    db.Resimler.Add(r);
-                    db.Makaleler.Add(makale);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
-                #endregion
-                if (ModelState.IsValid)
-                {
-                    var kadi = Session["username"].ToString();
-                    var kullanici = db.Users.Where(x => x.UserName == kadi).SingleOrDefault();
-                    makale.Kullanici = kullanici;
-
-                    db.Makaleler.Add(makale);
-                    db.SaveChanges();
                 }
             }
+            #endregion
+            if (ModelState.IsValid)
+            {
+                Kategori kat = new Kategori();
+                kat.Adi = kateg;
+                makale.Kategori = kat;
+                Kullanici k = new Kullanici();
+                k = db.Users.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
+                makale.Kullanici = k;
+
+                foreach (var item in etik)
+                {
+                    Etiket e = new Etiket();
+                    e.Adi = item;
+                    makale.Etiketler.Add(e);
+                    db.Etiketler.Add(e);
+
+                }
+                db.Resimler.Add(r);
+                db.Makaleler.Add(makale);
+                db.SaveChanges();
+
+                //return RedirectToAction("Index");
+            }
+
+            else
+            {
+                Kategori kat = new Kategori();
+                kat.Adi = kateg;
+                makale.Kategori = kat;
+                var ku = db.Users.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
+                makale.Kullanici = ku;
+
+                foreach (var item in etik)
+                {
+                    Etiket e = new Etiket();
+                    e.Adi = item;
+                    makale.Etiketler.Add(e);
+                    db.Etiketler.Add(e);
+
+                }
+                db.Makaleler.Add(makale);
+                db.SaveChanges();
+                db.SaveChanges();
+            }
             ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi", makale.KategoriID);
-            return View(makale);
+            return Redirect("/Uye/Profil");
         }
-        // GET: Makale/Edit/5
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -146,7 +176,7 @@ namespace SabihaninBlogProjesi.Areas.Areas.Controllers
             {
                 db.Entry(makale).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return Redirect("/Uye/profil/");
             }
             ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi", makale.KategoriID);
             return View(makale);

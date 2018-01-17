@@ -1,7 +1,7 @@
 ﻿@model List<DomainEntity.Models.Makale>
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_HomeNavbarLayout.cshtml";
 }
 
 @helper IcerikKisalt(string metin)
@@ -15,8 +15,161 @@ else
         @metin
 }
 }
-<h2>Index</h2>
+@helper IcerikKisalt2 (string metin)
+{
+if (metin.Length > 500)
+{
+        @metin.Substring(0, 100)
+}
+else
+{
+        @metin
+}
+}@{
 
+    var eniyi = Model.OrderBy(x => x.EklenmeTarihi).Take(3).ToList();
+}
+<br/>
+<br/>
+<style>    /*Now the styles*/
+* {
+    margin: 0; 
+	padding: 0;
+}
+body {
+	background: #ccc; 
+	font-family: arial, verdana, tahoma;
+}
+
+/*Time to apply widths for accordian to work
+Width of image = 640px
+total images = 5
+so width of hovered image = 640px
+width of un-hovered image = 40px - you can set this to anything
+so total container width = 640 + 40*4 = 800px;
+default width = 800/5 = 160px;
+*/
+
+.accordian {
+	width: 805px; height: 320px;
+	overflow: hidden;
+	
+	/*Time for some styling*/
+	margin: 100px auto;
+	box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
+	-webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
+	-moz-box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.35);
+}
+
+/*A small hack to prevent flickering on some browsers*/
+.accordian ul {
+	width: 1200px;
+	/*This will give ample space to the last item to move
+	instead of falling down/flickering during hovers.*/
+}
+
+.accordian li {
+	position: relative;
+	display: block;
+	width: 160px;
+	float: left;
+	
+	border-left: 1px solid #888;
+	
+	box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 0 0 25px 10px rgba(0, 0, 0, 0.5);
+	
+	/*Transitions to give animation effect*/
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	/*If you hover on the images now you should be able to 
+	see the basic accordian*/
+}
+
+/*Reduce with of un-hovered elements*/
+.accordian ul:hover li {width: 40px;}
+/*Lets apply hover effects now*/
+/*The LI hover style should override the UL hover style*/
+.accordian ul li:hover {width: 640px;}
+
+
+.accordian li img {
+	display: block;
+}
+
+/*Image title styles*/
+.image_title {
+	background: rgba(0, 0, 0, 0.5);
+	position: absolute;
+	left: 0; bottom: 0;	
+width: 640px;	
+
+}
+.image_title a {
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	padding: 20px;
+	font-size: 16px;
+}</style>
+<!-- We will make a simple accordian with hover effects
+The markup will have a list with images and the titles-->
+<div class="accordian" style="margin:3px auto 3px auto">
+    <ul>
+        <li>
+            <div class="image_title">
+                <a href="#">Genel</a>
+            </div>
+            <a href="#">
+                <img src="~/Content/tttttttyyyyyyyyyy.jpg" style="width:640px; height:320px;" />
+            
+            </a>
+        </li>
+        <li>
+            <div class="image_title">
+                <a href="#">Edebiyat</a>
+            </div>
+            <a href="#">
+                <img src="~/Content/kkkkk.jpg" style="width:640px; height:320px;" />
+               
+            </a>
+        </li>
+        <li>
+            <div class="image_title">
+                <a href="#">Biyografi</a>
+            </div>
+            <a href="#">
+                <img src="~/Content/yuuuu.jpg" style="width:640px; height:320px;"  />
+           
+            </a>
+        </li>
+        <li>
+            <div class="image_title">
+                <a href="#">Sanat</a>
+            </div>
+            <a href="#">
+                <img src="~/Content/efefef.jpg" style="width:640px; height:320px;"  />
+                
+            </a>
+        </li>
+        <li>
+            <div class="image_title">
+                <a href="#">Kitap</a>
+            </div>
+            <a href="#">
+                <img src="~/Content/frfrf.jpg" style="width:640px; height:320px;" />
+            
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+<div>
+ <h4><a href="/Makale/Ekle">Makale oluştur</a></h4>  
+</div>
 <!-- /.row -->
 <div class="row">
     @{ int i = 0; }
@@ -56,23 +209,21 @@ else
 
 
         }
-
+       
         <div class="col-lg-4">
 
             <div class="@classAdi" >
 
 
-                @foreach (var item1 in Model)
-                {
-                    if (@item1.Etiketler.Where(x => x.EtiketID == item.MakaleID).Count() != 0)
-                    {
+                
+                    
                         <div class="panel-heading" style="display:block">
                             <div >
-                               Etiket: @item1.Etiketler.Where(x => x.EtiketID == item.MakaleID).Select(x => x.Adi).FirstOrDefault()
+                              Kategori : @item.Kategori.Adi
                                 <p onclick="kalp()" id="kkk" style="float:right" data-id="ddd">Kalp</p></div>
                         </div>
 
-                    }
+                    
                     @*else
                     {
                         <div class="panel-heading" style="display:block">
@@ -83,7 +234,7 @@ else
                         </div>
 
                     }*@
-                }
+               
 
                 <div class="panel-body" style="display:block">
                     <h4>@item.Baslik</h4>
@@ -126,4 +277,7 @@ else
         alert(ccc);
     }
 
+  
+
+   
 </script>

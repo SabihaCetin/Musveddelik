@@ -200,8 +200,6 @@
     <Compile Include="Controllers\AdminMakaleController.cs" />
     <Compile Include="Controllers\AdminResimController.cs" />
     <Compile Include="Controllers\AdminYorumController.cs" />
-    <Compile Include="Controllers\DenemeController.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\MakaleController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -555,6 +553,7 @@
     <Content Include="ckeditor\skins\moono\images\refresh.png" />
     <Content Include="ckeditor\skins\moono\images\spinner.gif" />
     <Content Include="ckeditor\styles.js" />
+    <Content Include="Content\220px-User_icon_2.svg.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ckeditor_4.8.0_full\ckeditor\adapters\jquery.js" />
@@ -1643,6 +1642,10 @@
     <Content Include="Content\ckfinder\_samples\standalone.html" />
     <Content Include="Content\ckfinder\_samples\standalone_v1.html" />
     <Content Include="Content\CustomProfilSite.css" />
+    <Content Include="Content\efefef.jpg" />
+    <Content Include="Content\kkkkk.jpg" />
+    <Content Include="Content\tttttttyyyyyyyyyy.jpg" />
+    <Content Include="Content\frfrf.jpg" />
     <Content Include="Content\Upload\kurt-resimleri_24387.jpg3feb7.jpg" />
     <Content Include="Content\Upload\kurt-resimleri_24387.jpg5e2ca.jpg" />
     <Content Include="Content\Upload\MakaleResimdede-korkut-kimdir-1163.jpg3fd2b.jpg" />
@@ -1662,6 +1665,8 @@
     <Content Include="Content\Upload\yavru-kediler.jpgf0921.jpg" />
     <Content Include="Content\Upload\yavru-kediler.jpgfd6d5.jpg" />
     <Content Include="Content\Upload\yavru-kediler.jpgfe449.jpg" />
+    <Content Include="Content\yuuuu.jpg" />
+    <Content Include="Content\ııı.png" />
     <Content Include="data\flot-data.js" />
     <Content Include="data\morris-data.js" />
     <Content Include="dist\css\sb-admin-2.css" />
@@ -1875,9 +1880,7 @@
     <Content Include="Views\Konu\Index.cshtml" />
     <Content Include="Views\Konu\Detay.cshtml" />
     <Content Include="Views\Konu\Duzenle.cshtml" />
-    <Content Include="Views\Shared\TavsiyeEdilenBloglar.cshtml" />
     <Content Include="Views\deneme.cshtml" />
-    <Content Include="Views\Shared\_LayoutTema.cshtml" />
     <Content Include="Views\Kategori\Create.cshtml" />
     <Content Include="Views\Kategori\Delete.cshtml" />
     <Content Include="Views\Kategori\Details.cshtml" />
@@ -1972,11 +1975,17 @@
     <Content Include="Views\Uye\Index.cshtml" />
     <Content Include="Views\Uye\Details.cshtml" />
     <Content Include="Views\Shared\_RegisterPartialLayout.cshtml" />
-    <Content Include="Views\Shared\_GirisLayout.cshtml" />
     <Content Include="Views\Shared\_Giris.cshtml" />
     <Content Include="vendor\font-awesome\vendor\fonts\fontawesome-webfont.woff2" />
     <Content Include="vendor\font-awesome\vendor\fonts\fontawesome-webfont.woff" />
     <Content Include="vendor\font-awesome\vendor\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Views\Uye\Profil.cshtml" />
+    <Content Include="Views\Uye\gir.cshtml" />
+    <Content Include="Views\Shared\_NavbarLayour.cshtml" />
+    <Content Include="Views\Uye\gir2.cshtml" />
+    <Content Include="Views\Shared\_HomeNavbarLayout.cshtml" />
+    <Content Include="Views\Uye\Edit.cshtml" />
+    <Content Include="Views\AdminMakale\Home.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

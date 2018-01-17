@@ -1,0 +1,92 @@
+﻿
+@using Microsoft.AspNet.Identity
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        a { color:#8a5391}
+        .navbar-default .navbar-text {
+  color:#ffffff;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #ffffff;
+}
+    </style>
+</head>
+<body>
+    <div>
+
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0; background-color :#8a5391">
+           
+                <a class="navbar-brand" href="/Uye/Index" style="color:black;margin:0px auto auto 100px; padding:0px"><img src="~/Content/ııı.png" height="50" style="margin:0px auto auto auto ;padding:0px" /></a>
+           
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+
+                <!-- /.dropdown -->
+                @if (Request.IsAuthenticated)
+                {
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="profil">
+                                @if (User.Identity.GetUserName().ToString() == "admin@yaz5.com")
+                                {
+                                    @Html.ActionLink("Merhaba " + User.Identity.GetUserName() + "!", "Home", "AdminMakale", routeValues: null, htmlAttributes: new { title = "Profil" })
+
+                                }else
+	{                                @Html.ActionLink("Merhaba " + User.Identity.GetUserName() + "!", "Profil", "Uye", routeValues: null, htmlAttributes: new { title = "Profil" })
+                                } </li>
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                        </ul>
+                    }
+                }
+
+
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+
+        </nav>
+        @RenderBody()
+
+    </div>
+    <!-- jQuery -->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="~/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="~/vendor/metisMenu/metisMenu.min.js"></script>
+    <!-- Morris Charts JavaScript -->
+    <script src="~/vendor/raphael/raphael.min.js"></script>
+    <script src="~/vendor/morrisjs/morris.min.js"></script>
+    <script src="~/data/morris-data.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="~/dist/js/sb-admin-2.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

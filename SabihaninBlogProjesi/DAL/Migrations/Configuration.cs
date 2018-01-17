@@ -36,14 +36,14 @@
                  context.Roles.Add(new IdentityRole() { Name = "Kullanici" });
             }
           
-            if (context.Users.Count() == 0)
+            if (context.Users.Count() != 0)
             {
              
                 UserStore<Kullanici> str = new UserStore<Kullanici>(new MyContext());
                 UserManager<Kullanici> mng = new UserManager<Kullanici>(str);
 
-                var admin = new Kullanici() { Email = "admin@yaz5.com", UserName = "admin@yaz5.com", AdSoyad = "Yonetici", Meslek = "Yonetici" };
-                mng.Create(admin, "Aa123456!"); //2. parametre þifresi
+                var admin = new Kullanici() { Email = "admin@mail.com", UserName = "admin@mail.com", AdSoyad = "Yonetici", Meslek = "Yonetici" };
+                mng.Create(admin, "123456"); //2. parametre þifresi
                 context.SaveChanges();
                 mng.AddToRole(admin.Id, "Admin");
                 context.SaveChanges();

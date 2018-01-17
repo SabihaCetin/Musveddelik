@@ -27,6 +27,8 @@ namespace DAL
 
         //public System.Data.Entity.DbSet<DomainEntity.Models.Kullanici> Kullanicis { get; set; }
 
+        //public System.Data.Entity.DbSet<DomainEntity.Models.Kullanici> Kullanicis { get; set; }
+
         //public System.Data.Entity.DbSet<SabihaninBlogProjesi.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

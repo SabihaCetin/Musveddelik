@@ -87,7 +87,13 @@ namespace SabihaninBlogProjesi.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    Session["username"] = model.Email;
+                    User.Identity.GetUserId();
+                  
+                    if (returnUrl=="Home/Index/")
+                    {
+                        return Redirect("/Uye/Profil");
+
+                    }else
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -437,6 +443,7 @@ namespace SabihaninBlogProjesi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+        
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }

@@ -11,19 +11,24 @@ using SabihaninBlogProjesi.Models;
 using DAL;
 using System.IO;
 using BLL;
+using Microsoft.AspNet.Identity;
 
 namespace SabihaninBlogProjesi.Controllers
 {
     [Authorize(Roles = "Admin, Yonetici")]
     public class AdminMakaleController : Controller
     {
-        
+        public ActionResult Home()
+        {
+
+            return View();
+        }
+
         MyContext db = new MyContext();
 
         // GET: AdminMakale
-        public ActionResult Index(Kullanici k)
+        public ActionResult Index()
         {
-            Session["username"] = k.UserName;
             var Makaleler = db.Makaleler.Include(m => m.Kategori);
             return View(Makaleler.ToList());
         }
@@ -47,11 +52,13 @@ namespace SabihaninBlogProjesi.Controllers
         {
             Kullanici k = new Kullanici();
             YorumRep yrep = new YorumRep();
-
-
-            var kullanici = db.Users.Where(i => i.Email == k.Email).FirstOrDefault();
+            var yorumyapanID = User.Identity.GetUserId();
+            
+           
+            var kullanici = db.Makaleler.Where(x => x.Kullanici.Id==yorumyapanID).FirstOrDefault();
             var makale = db.Makaleler.Where(x => x.MakaleID == Makaleid).FirstOrDefault();
-            db.Yorumlar.Add(new DomainEntity.Yorum { Kullanici = kullanici, Makale = makale, EklenmeTarihi = DateTime.Now, YorumIcerik = yorum });
+            
+            db.Yorumlar.Add(new DomainEntity.Yorum { Kullanici =kullanici.Kullanici , Makale = makale, EklenmeTarihi = DateTime.Now, YorumIcerik = yorum });
             db.SaveChanges();
             //return Json(false, JsonRequestBehavior.AllowGet);
         }
@@ -68,7 +75,7 @@ namespace SabihaninBlogProjesi.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale, HttpPostedFileBase resim, string[] etik, string kullanicim)
+        public ActionResult Create([Bind(Include = "MakaleID,Baslik,Icerik,EklenmeTarihi,KategoriID,GoruntulenmeSayisi,Begeni,KullaniciID")] Makale makale, HttpPostedFileBase resim, string[] etik, string kateg)
         {
             Resim r = new Resim();
             if (ModelState.IsValid)
@@ -92,17 +99,21 @@ namespace SabihaninBlogProjesi.Controllers
                             resim.SaveAs(klasor + dosyaAdi);
                             r.OrtaBoyut = dosyaAdi;
                             makale.Resimler.Add(r);
-                             new BLL.BaseRepository<Resim>().Insert(r);
+                            new BLL.BaseRepository<Resim>().Insert(r);
                         }
                         catch { }
                     }
                 }
             }
-                #endregion
+            #endregion
             if (ModelState.IsValid)
             {
-                var ku = db.Users.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
-                makale.Kullanici = ku;
+                Kategori kat = new Kategori();
+                kat.Adi = kateg;
+                makale.Kategori = kat;
+                Kullanici k = new Kullanici();
+                k = db.Users.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
+                makale.Kullanici = k;
 
                 foreach (var item in etik)
                 {
@@ -116,11 +127,14 @@ namespace SabihaninBlogProjesi.Controllers
                 db.Makaleler.Add(makale);
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
             }
 
             else
             {
+                Kategori kat = new Kategori();
+                kat.Adi = kateg;
+                makale.Kategori = kat;
                 var ku = db.Users.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
                 makale.Kullanici = ku;
 
@@ -137,7 +151,7 @@ namespace SabihaninBlogProjesi.Controllers
                 db.SaveChanges();
             }
             ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi", makale.KategoriID);
-            return View(makale);
+            return Redirect("/Uye/Profil");
         }
 
         // GET: AdminMakale/Edit/5
@@ -230,7 +244,7 @@ namespace SabihaninBlogProjesi.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.KategoriID = new SelectList(db.Kategoriler, "KAtegoriID", "Adi", makale.KategoriID);
-            return View(makale);
+            return View(makale);//değişikilik View(makale); idi
         }
 
         // GET: AdminMakale/Delete/5

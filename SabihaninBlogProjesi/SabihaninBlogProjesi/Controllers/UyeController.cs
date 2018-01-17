@@ -1,5 +1,6 @@
 ﻿using DAL;
 using DomainEntity.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace SabihaninBlogProjesi.Controllers
     {
             MyContext db = new MyContext();
         // GET: Uye
+        [Authorize]
         public ActionResult Index()
         {
 
@@ -33,13 +35,32 @@ namespace SabihaninBlogProjesi.Controllers
             }
             return View(makale);
         }
-
+        [Authorize]
         // GET: Uye/Create
-        public ActionResult Create()
+        public ActionResult Profil()
+        {
+            var aktifuyeID = User.Identity.GetUserId();
+            if (aktifuyeID == null)
+            {
+                return RedirectToAction("Login", "Account", null);
+            }
+            var g = db.Users.Where(x => x.Id == aktifuyeID).Select(y=>y.UserName).FirstOrDefault();
+
+
+            var girisyapan = db.Makaleler.Where(x => x.Kullanici.Email == g).FirstOrDefault();
+
+            return View(girisyapan);
+        }
+
+        public ActionResult gir()
         {
             return View();
         }
 
+        public ActionResult gir2()
+        {
+            return View();
+        }
         // POST: Uye/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
