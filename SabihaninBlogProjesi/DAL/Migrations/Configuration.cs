@@ -36,7 +36,7 @@
                  context.Roles.Add(new IdentityRole() { Name = "Kullanici" });
             }
           
-            if (context.Users.Count() != 0)
+            if (context.Users.Count() == 0)
             {
              
                 UserStore<Kullanici> str = new UserStore<Kullanici>(new MyContext());
